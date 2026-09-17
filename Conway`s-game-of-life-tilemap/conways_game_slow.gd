@@ -94,3 +94,7 @@ func _process(delta: float) -> void:
 	time_sins_last_frame = 0
 	Simulation()
 	print(Get_Breite(CONWAYSVARIABEL.Pixel))
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Hauptmenü/hauptmenü.tscn")
