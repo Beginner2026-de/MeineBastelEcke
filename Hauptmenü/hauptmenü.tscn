@@ -1,60 +1,86 @@
-[gd_scene load_steps=4 format=3 uid="uid://cai3brn5qfu2v"]
+[gd_scene format=3 uid="uid://cai3brn5qfu2v"]
 
 [ext_resource type="Script" uid="uid://b8rscerrftfpr" path="res://Hauptmenü/hauptmenü.gd" id="1_fwphb"]
 [ext_resource type="Script" uid="uid://ogirkl0hk5t0" path="res://Hauptmenü/sinus_wellen_simulation_button.gd" id="1_rmmmx"]
 [ext_resource type="Script" uid="uid://cuy0vpr6xb2ih" path="res://Hauptmenü/exit_game.gd" id="2_m1wvj"]
 
-[node name="Hauptmenü" type="Control"]
+[node name="Hauptmenü" type="Control" unique_id=1113670243]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 900.0
 offset_bottom = 500.0
 script = ExtResource("1_fwphb")
 
-[node name="Menü" type="Label" parent="."]
-layout_mode = 0
-offset_right = 900.0
-offset_bottom = 25.0
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=208558167]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2015480402]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Container" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=792148568]
+layout_mode = 2
+
+[node name="Menü" type="Label" parent="VBoxContainer/MarginContainer/Container" unique_id=1053374029]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 1
 text = "Menü"
 horizontal_alignment = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 25.0
-offset_right = 895.0
-offset_bottom = 425.0
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1705456635]
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer" unique_id=1787752294]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=1588161650]
 layout_mode = 2
 
-[node name="Sinus-Wellen-Simulation-button" type="Button" parent="ScrollContainer/GridContainer"]
+[node name="Sinus-Wellen-Simulation-button" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1945287995]
 layout_mode = 2
 text = "Sinus Wellen Simulation"
 script = ExtResource("1_rmmmx")
 
-[node name="Conways-game-of-life-tilemap" type="Button" parent="ScrollContainer/GridContainer"]
+[node name="Conways-game-of-life-tilemap" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=154624828]
 layout_mode = 2
 text = "Conway's Game of Life Slow/Small"
 
-[node name="Exit-Game" type="Button" parent="."]
-layout_mode = 0
-offset_left = 855.0
-offset_top = 5.0
-offset_right = 892.0
-offset_bottom = 36.0
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=1788209051]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer2" unique_id=1201139964]
+layout_mode = 2
+layout_direction = 3
+
+[node name="go-to-settings-Button" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1688280396]
+layout_mode = 2
+text = "Einstellungen"
+
+[node name="Exit-Game" type="Button" parent="VBoxContainer/MarginContainer2/HBoxContainer" unique_id=777391574]
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Exit"
 script = ExtResource("2_m1wvj")
 
-[node name="go-to-settings-Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 735.0
-offset_top = 5.0
-offset_right = 848.0
-offset_bottom = 36.0
-text = "Einstellungen"
-
-[connection signal="pressed" from="ScrollContainer/GridContainer/Sinus-Wellen-Simulation-button" to="ScrollContainer/GridContainer/Sinus-Wellen-Simulation-button" method="_on_pressed"]
-[connection signal="pressed" from="ScrollContainer/GridContainer/Conways-game-of-life-tilemap" to="." method="_on_conwaysgameoflifetilemap_pressed"]
-[connection signal="pressed" from="Exit-Game" to="Exit-Game" method="_on_pressed"]
-[connection signal="pressed" from="go-to-settings-Button" to="." method="_on_gotosettings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Sinus-Wellen-Simulation-button" to="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Sinus-Wellen-Simulation-button" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Conways-game-of-life-tilemap" to="." method="_on_conwaysgameoflifetilemap_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/go-to-settings-Button" to="." method="_on_gotosettings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/Exit-Game" to="VBoxContainer/MarginContainer2/HBoxContainer/Exit-Game" method="_on_pressed"]
