@@ -1,8 +1,5 @@
 extends Control
 
-
-
-
 func _on_auflösungaussuchen_item_selected(index: int) -> void:
 	if DisplayServer.window_get_mode() == 3:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
@@ -14,12 +11,8 @@ func _on_auflösungaussuchen_item_selected(index: int) -> void:
 		2:
 			DisplayServer.window_set_size(Vector2i(900,500))
 
-
 func _on_scenexit_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Hauptmenü/hauptmenü.tscn")
-
-
-
 
 
 func _on_vollbild_pressed() -> void:
