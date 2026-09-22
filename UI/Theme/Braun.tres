@@ -1,0 +1,53 @@
+[gd_resource type="Theme" format=3 uid="uid://bapo5wcc4jhyb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwphb"]
+bg_color = Color(0.96862745, 0.5882353, 0.40784314, 0.52156866)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_648tn"]
+bg_color = Color(0.85882354, 0.62352943, 0.45882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpx85"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.5647059, 0.2509804, 0.07058824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdk2m"]
+bg_color = Color(0.24313726, 0.14117648, 0.06666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhsiw"]
+bg_color = Color(0.2784314, 0.15686275, 0.07450981, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhbyg"]
+bg_color = Color(0.75662947, 0.48210508, 0.3007583, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri47r"]
+bg_color = Color(0.20518762, 0.110162996, 0.045747332, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ei2q"]
+bg_color = Color(0.2784314, 0.15686275, 0.07450981, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5eka"]
+bg_color = Color(0.96862745, 0.5882353, 0.40784314, 0.52156866)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1w0ov"]
+bg_color = Color(0.2784314, 0.15686275, 0.07450981, 1)
+
+[resource]
+Button/colors/font_color = Color(0.85882354, 0.62352943, 0.45882353, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.5529412)
+Button/colors/font_hover_color = Color(0.38137856, 0.20640239, 0.1312792, 1)
+Button/colors/font_pressed_color = Color(0.85882354, 0.62352943, 0.45882353, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_fwphb")
+Button/styles/hover = SubResource("StyleBoxFlat_648tn")
+Button/styles/normal = SubResource("StyleBoxFlat_vpx85")
+Button/styles/pressed = SubResource("StyleBoxFlat_kdk2m")
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_fhsiw")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_mhbyg")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ri47r")
+Label/colors/font_color = Color(0.8059261, 0.59353125, 0.3815026, 1)
+LineEdit/colors/font_color = Color(0.85882354, 0.62352943, 0.45882353, 1)
+LineEdit/colors/font_uneditable_color = Color(0, 0, 0, 0.5529412)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_1ei2q")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_l5eka")
+TextEdit/colors/font_color = Color(0.85882354, 0.62352943, 0.45882353, 1)
+TextEdit/styles/normal = SubResource("StyleBoxFlat_1w0ov")
