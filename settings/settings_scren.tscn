@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://df0nvjdqecv0p" path="res://settings/settings_scren.gd" id="1_5w5f0"]
 [ext_resource type="Script" uid="uid://b8iw2i1k7gsd" path="res://settings/option_button_theme.gd" id="2_ii845"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_5w5f0"]
-font_size = 20
-
 [node name="Settings-scren" type="Control" unique_id=990046942]
 layout_mode = 3
 anchors_preset = 15
@@ -25,46 +22,60 @@ grow_vertical = 2
 
 [node name="setting-label" type="MarginContainer" parent="VBoxContainer" unique_id=170261160]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/margin_top = 5
 
-[node name="Settings" type="Label" parent="VBoxContainer/setting-label" unique_id=1089481963]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/setting-label" unique_id=113824093]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/setting-label/HBoxContainer" unique_id=62710410]
+layout_mode = 2
+size_flags_horizontal = 6
 text = "Einstellungen"
-label_settings = SubResource("LabelSettings_5w5f0")
-horizontal_alignment = 1
+
+[node name="scen-exit-Button" type="Button" parent="VBoxContainer/setting-label/HBoxContainer" unique_id=433045875]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+text = "Back"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2065209286]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer/MarginContainer" unique_id=921897828]
+layout_mode = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="TabBar" type="TabBar" parent="VBoxContainer/MarginContainer/TabContainer" unique_id=1721898410]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="linkebox" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/TabBar" unique_id=1278867672]
+layout_mode = 1
+anchors_preset = -1
+
+[node name="auflösung-box" type="MarginContainer" parent="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox" unique_id=869124813]
+layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1949455746]
-layout_mode = 2
-
-[node name="linkebox" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=1278867672]
-layout_mode = 2
-
-[node name="auflösung-box" type="MarginContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/linkebox" unique_id=869124813]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer/linkebox/auflösung-box" unique_id=1149099412]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox/auflösung-box" unique_id=1149099412]
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="Auflösung" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/linkebox/auflösung-box/HBoxContainer" unique_id=110278081]
+[node name="Auflösung" type="Label" parent="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox/auflösung-box/HBoxContainer" unique_id=110278081]
 layout_mode = 2
 text = "Auflösung"
 
-[node name="Auflösung-aussuchen" type="OptionButton" parent="VBoxContainer/MarginContainer/HBoxContainer/linkebox/auflösung-box/HBoxContainer" unique_id=178398350]
+[node name="Auflösung-aussuchen" type="OptionButton" parent="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox/auflösung-box/HBoxContainer" unique_id=178398350]
 layout_mode = 2
 selected = 2
 item_count = 3
@@ -75,18 +86,25 @@ popup/item_1/id = 1
 popup/item_2/text = "900x500"
 popup/item_2/id = 2
 
-[node name="Vollbild" type="CheckButton" parent="VBoxContainer/MarginContainer/HBoxContainer/linkebox" unique_id=1925743265]
+[node name="Vollbild" type="CheckButton" parent="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox" unique_id=1925743265]
 layout_mode = 2
 text = "Vollbild"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer" unique_id=1785758965]
+[node name="TabBar2" type="TabBar" parent="VBoxContainer/MarginContainer/TabContainer" unique_id=733521567]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1935640970]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/TabBar2" unique_id=1785758965]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 458.0
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/TabContainer/TabBar2/VBoxContainer" unique_id=1935640970]
 layout_mode = 2
 text = "Theme"
 
-[node name="OptionButton_theme" type="OptionButton" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=506104702]
+[node name="OptionButton_theme" type="OptionButton" parent="VBoxContainer/MarginContainer/TabContainer/TabBar2/VBoxContainer" unique_id=506104702]
 layout_mode = 2
 selected = 2
 item_count = 3
@@ -98,22 +116,7 @@ popup/item_2/text = "Braun"
 popup/item_2/id = 2
 script = ExtResource("2_ii845")
 
-[node name="bock-button" type="MarginContainer" parent="VBoxContainer/MarginContainer" unique_id=1641739576]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 10
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="scen-exit-Button" type="Button" parent="VBoxContainer/MarginContainer/bock-button" unique_id=433045875]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 10
-text = "Back"
-
-[connection signal="item_selected" from="VBoxContainer/MarginContainer/HBoxContainer/linkebox/auflösung-box/HBoxContainer/Auflösung-aussuchen" to="." method="_on_auflösungaussuchen_item_selected"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/linkebox/Vollbild" to="." method="_on_vollbild_pressed"]
-[connection signal="item_selected" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/OptionButton_theme" to="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/OptionButton_theme" method="_on_item_selected"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/bock-button/scen-exit-Button" to="." method="_on_scenexit_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/setting-label/HBoxContainer/scen-exit-Button" to="." method="_on_scenexit_button_pressed"]
+[connection signal="item_selected" from="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox/auflösung-box/HBoxContainer/Auflösung-aussuchen" to="." method="_on_auflösungaussuchen_item_selected"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/TabContainer/TabBar/linkebox/Vollbild" to="." method="_on_vollbild_pressed"]
+[connection signal="item_selected" from="VBoxContainer/MarginContainer/TabContainer/TabBar2/VBoxContainer/OptionButton_theme" to="VBoxContainer/MarginContainer/TabContainer/TabBar2/VBoxContainer/OptionButton_theme" method="_on_item_selected"]
