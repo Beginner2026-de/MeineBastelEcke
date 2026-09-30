@@ -1,0 +1,29 @@
+extends GraphEdit
+
+# Ein Verzeichnis, das speichert, welches Node-Skript welches Ergebnis liefert
+var node_outputs: Dictionary = {}
+
+func _ready() -> void:
+	# Signale verbinden, um Verbindungen zu verwalten
+	connection_request.connect(_on_connection_request)
+	disconnection_request.connect(_on_disconnection_request)
+
+func _on_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+	# Optische Verbindung im Graph erzeugen
+	connect_node(from_node, from_port, to_node, to_port)
+	
+	# Datenfluss auslösen: Daten vom Quell-Node zum Ziel-Node senden
+	transfer_data(from_node, from_port, to_node, to_port)
+
+func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+	disconnect_node(from_node, from_port, to_node, to_port)
+
+func transfer_data(from_node_name: StringName, _from_port: int, to_node_name: StringName, to_port: int) -> void:
+	var source_node = get_node(NodePath(from_node_name))
+	var target_node = get_node(NodePath(to_node_name))
+	
+	# 1. Daten vom Quell-Node abrufen
+	var output_data = source_node.get_output_data()
+	
+	# 2. Daten an den Ziel-Node übergeben und dort verarbeiten
+	target_node.receive_input_data(to_port, output_data)

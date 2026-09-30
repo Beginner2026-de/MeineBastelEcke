@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bnhs5i3v1bf0w"]
+
+[ext_resource type="Script" uid="uid://c8qmiapkr5gim" path="res://Sinus-Simulation2/hauptgraph.gd" id="1_87p4b"]
+[ext_resource type="Script" uid="uid://pla0w14kyeln" path="res://Sinus-Simulation2/back_button.gd" id="2_8rmm2"]
+
+[node name="SinusSimulation2" type="Control" unique_id=303640558]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GraphEdit" type="GraphEdit" parent="." unique_id=969529987]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_87p4b")
+
+[node name="MarginContainer" type="MarginContainer" parent="GraphEdit" unique_id=1521231532]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Back-Button" type="Button" parent="GraphEdit/MarginContainer" unique_id=978346258]
+layout_mode = 2
+text = "Back"
+script = ExtResource("2_8rmm2")
+
+[connection signal="pressed" from="GraphEdit/MarginContainer/Back-Button" to="GraphEdit/MarginContainer/Back-Button" method="_on_pressed"]
