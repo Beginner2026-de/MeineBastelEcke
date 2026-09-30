@@ -11,7 +11,7 @@ func GetColorForThemesByIndex(index : int):
 	var color_surface: Color        # Normaler Zustand von Buttons / Feldern
 	var color_surface_hover: Color  # Hover-Zustand (Maus bewegt sich darüber)
 	var color_surface_active: Color # Pressed / Fokus-Zustand (Aktiv geklickt)
-
+	var button_content_margins: float = 10
 	# Akzente & Highlights
 	var color_accent: Color         # Haupt-Akzentfarbe (z. B. ausgewählte Tabs, Slider-Grabber, Rahmen)
 	var color_border: Color         # Subtile Ränder zur Abgrenzung von Elementen
@@ -19,9 +19,6 @@ func GetColorForThemesByIndex(index : int):
 	# Typografie / Text-Hierarchie
 	var color_text_primary: Color   # Haupttext (Überschriften, wichtige Labels) - bester Kontrast
 	var color_text_secondary: Color # Sekundärer Text (Untertitel, Platzhalter, Beschreibungen)
-
-	# System-Meldungen
-	var color_error: Color          # Warnungen, Abbrechen-Buttons, Fehler
 
 	match index:
 		0: # --- DUNKEL / SCHWARZ (Dark Mode) ---
@@ -34,7 +31,6 @@ func GetColorForThemesByIndex(index : int):
 			color_border         = Color("#2e3034") # Subtiler Rand
 			color_text_primary   = Color("#e5e9f0") # Sehr helles Weiß-Grau für Haupttext
 			color_text_secondary = Color("#888c94") # Gedämpftes Grau für Sekundärtext
-			color_error          = Color("#bf616a") # Softes Rot
 
 		1: # --- HELL / WEISS (Light Mode) ---
 			color_bg_dark        = Color("#f0f2f5") # Softes Hellgrau als Hintergrund
@@ -46,7 +42,6 @@ func GetColorForThemesByIndex(index : int):
 			color_border         = Color("#d1d5db") # Abgrenzungsränder
 			color_text_primary   = Color("#111827") # Fast Schwarz für beste Lesbarkeit
 			color_text_secondary = Color("#6b7280") # Mittleres Grau für Nebeninformationen
-			color_error          = Color("#d93025") # Kräftiges Rot
 
 		2: # --- BRAUN / ERDE (Warm Cozy Mode) ---
 			color_bg_dark        = Color("#1f1917") # Dunkles Schokoladenbraun
@@ -58,7 +53,6 @@ func GetColorForThemesByIndex(index : int):
 			color_border         = Color("#4a3b36") # Rahmen im Ton
 			color_text_primary   = Color("#f5ebd9") # Cremeweiß / Beige
 			color_text_secondary = Color("#a89a8b") # Gedämpftes Sandgrau
-			color_error          = Color("#c84b31") # Warmes Rostrot
 
 		3: # --- BLAU (Modern Tech Mode) ---
 			color_bg_dark        = Color("#0f172a") # Tiefes Nachtblau
@@ -70,7 +64,6 @@ func GetColorForThemesByIndex(index : int):
 			color_border         = Color("#1e293b") # Trennlinie
 			color_text_primary   = Color("#f8fafc") # Strahlend Hellblau-Weiß
 			color_text_secondary = Color("#94a3b8") # Gedämpftes Blau-Grau
-			color_error          = Color("#f43f5e") # Neon-Rot
 	
 	apply_colors_to_theme(color_bg_dark,
 						color_bg_panel,
@@ -80,7 +73,8 @@ func GetColorForThemesByIndex(index : int):
 						color_accent,
 						color_border,
 						color_text_primary,
-						color_text_secondary)
+						color_text_secondary,
+						button_content_margins)
 
 
 func apply_colors_to_theme(color_bg_dark,
@@ -92,7 +86,8 @@ func apply_colors_to_theme(color_bg_dark,
 						color_border,
 						color_text_primary,
 						color_text_secondary,
-						my_theme=load("res://UI/standart.tres")) -> void:
+						button_content_margins,
+						my_theme=load("res://UI/standard.tres")) -> void:
 							
 	RenderingServer.set_default_clear_color(color_bg_dark)
 	# --- 1. BUTTONS (Button, OptionButton, MenuButton) ---
@@ -109,7 +104,8 @@ func apply_colors_to_theme(color_bg_dark,
 		btn_normal.border_color = color_border
 		btn_normal.border_width_bottom = 2
 		btn_normal.set_corner_radius_all(4)
-		
+		btn_normal.set_content_margin(SIDE_LEFT, button_content_margins)
+		btn_normal.set_content_margin(SIDE_RIGHT, button_content_margins)
 		# Hover
 		var btn_hover = StyleBoxFlat.new()
 		btn_hover.bg_color = color_surface_hover

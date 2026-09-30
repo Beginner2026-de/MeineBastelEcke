@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6w2llwaw2d3u"]
+[gd_scene format=3 uid="uid://c6w2llwaw2d3u"]
 
 [ext_resource type="Script" uid="uid://dgeb7keo48lkf" path="res://Sinus-Simulation/Sinus-Wellen-Simulaton.gd" id="1_4dnlt"]
 [ext_resource type="Script" uid="uid://cwjrrvlspox5q" path="res://Sinus-Simulation/simulation_stoppen_button.gd" id="2_54x1t"]
@@ -22,87 +22,86 @@ default_font_size = 11
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fwq1"]
 bg_color = Color(1, 0, 0, 1)
 
-[node name="Kurvenbereich" type="Control"]
+[node name="Kurvenbereich" type="Control" unique_id=696541488]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 900.0
 offset_bottom = 500.0
 script = ExtResource("1_4dnlt")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=725186081]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Simulation-stoppen-button" type="CheckButton" parent="HBoxContainer"]
+[node name="Simulation-stoppen-button" type="CheckButton" parent="HBoxContainer" unique_id=1107715966]
 layout_mode = 2
 text = "Stop"
 script = ExtResource("2_54x1t")
 
-[node name="Sinus1bereich" type="VBoxContainer" parent="."]
+[node name="Sinus1bereich" type="VBoxContainer" parent="." unique_id=2072857626]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 474.0
 offset_bottom = 200.0
 
-[node name="Sinus1" type="Label" parent="Sinus1bereich"]
+[node name="Sinus1" type="Label" parent="Sinus1bereich" unique_id=252621020]
 layout_mode = 2
 text = "Welle 1"
 horizontal_alignment = 1
 
-[node name="Text_Eingabe" type="GridContainer" parent="Sinus1bereich"]
+[node name="Text_Eingabe" type="GridContainer" parent="Sinus1bereich" unique_id=2004876209]
 layout_mode = 2
 size_flags_horizontal = 0
 columns = 2
 
-[node name="Amplitude" type="Label" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Amplitude" type="Label" parent="Sinus1bereich/Text_Eingabe" unique_id=1460313308]
 layout_mode = 2
 text = "Amplitude"
 
-[node name="Amp_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Amp_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe" unique_id=1125678743]
 layout_mode = 2
 placeholder_text = "50.0"
 virtual_keyboard_type = 2
 
-[node name="Frequency" type="Label" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Frequency" type="Label" parent="Sinus1bereich/Text_Eingabe" unique_id=1767555810]
 layout_mode = 2
 text = "Frequency"
 
-[node name="Fre_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Fre_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe" unique_id=768223260]
 layout_mode = 2
 placeholder_text = "20.0"
 virtual_keyboard_type = 2
 
-[node name="X_verschiebung" type="Label" parent="Sinus1bereich/Text_Eingabe"]
+[node name="X_verschiebung" type="Label" parent="Sinus1bereich/Text_Eingabe" unique_id=229852167]
 layout_mode = 2
 text = "X_Verschiebung"
 
-[node name="Xver_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Xver_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe" unique_id=1237549935]
 layout_mode = 2
 placeholder_text = "0.0"
 virtual_keyboard_type = 2
 
-[node name="Y_verschiebung" type="Label" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Y_verschiebung" type="Label" parent="Sinus1bereich/Text_Eingabe" unique_id=865164809]
 layout_mode = 2
 text = "Y_Verschiebung"
 
-[node name="Yver_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe"]
+[node name="Yver_Eingabe1" type="LineEdit" parent="Sinus1bereich/Text_Eingabe" unique_id=1883646860]
 layout_mode = 2
 placeholder_text = "0.0"
 virtual_keyboard_type = 2
 
-[node name="Control" type="Control" parent="Sinus1bereich"]
+[node name="Control" type="Control" parent="Sinus1bereich" unique_id=1007703223]
 layout_mode = 2
 
-[node name="Sinus1" parent="Sinus1bereich/Control" instance=ExtResource("2_c04v5")]
+[node name="Sinus1" parent="Sinus1bereich/Control" unique_id=1642505928 instance=ExtResource("2_c04v5")]
 unique_name_in_owner = true
 position = Vector2(200, -85)
 scale = Vector2(0.8, 0.8)
 default_color = Color(1, 0, 0, 1)
 
-[node name="Scala-Control" type="Control" parent="Sinus1bereich/Control"]
-layout_mode = 3
+[node name="Scala-Control" type="Control" parent="Sinus1bereich/Control" unique_id=1964748748]
 anchors_preset = 0
 offset_left = 200.0
 offset_top = -138.0
@@ -111,8 +110,8 @@ offset_bottom = -38.0
 scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(0, 50)
 
-[node name="1_2" type="Label" parent="Sinus1bereich/Control/Scala-Control"]
-layout_mode = 2
+[node name="1_2" type="Label" parent="Sinus1bereich/Control/Scala-Control" unique_id=1460272358]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 34.0
 offset_right = 137.0
@@ -122,7 +121,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "1/2"
 
-[node name="1s" type="Label" parent="Sinus1bereich/Control/Scala-Control"]
+[node name="1s" type="Label" parent="Sinus1bereich/Control/Scala-Control" unique_id=2044068090]
 layout_mode = 0
 offset_left = 222.0
 offset_top = 34.0
@@ -133,114 +132,113 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "1s"
 
-[node name="hbox" type="HBoxContainer" parent="Sinus1bereich/Control/Scala-Control"]
+[node name="hbox" type="HBoxContainer" parent="Sinus1bereich/Control/Scala-Control" unique_id=596790136]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 104.0
 theme_override_constants/separation = 0
 
-[node name="Panel" type="Panel" parent="Sinus1bereich/Control/Scala-Control/hbox"]
+[node name="Panel" type="Panel" parent="Sinus1bereich/Control/Scala-Control/hbox" unique_id=1405626324]
 custom_minimum_size = Vector2(2, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_54x1t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sinus1bereich/Control/Scala-Control/hbox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Sinus1bereich/Control/Scala-Control/hbox" unique_id=1457428280]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="+50" type="Label" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="+50" type="Label" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=596334904]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource("Theme_54x1t")
 text = "+50"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=910505485]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="Panel2" type="Panel" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=744177454]
 custom_minimum_size = Vector2(235, 2)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_54x1t")
 
-[node name="-50" type="Label" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="-50" type="Label" parent="Sinus1bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=1495487156]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource("Theme_54x1t")
 text = "-50"
 
-[node name="Sinus2bereich" type="VBoxContainer" parent="."]
+[node name="Sinus2bereich" type="VBoxContainer" parent="." unique_id=546507009]
 layout_mode = 0
 offset_left = 30.0
 offset_top = 210.0
 offset_right = 474.0
 offset_bottom = 380.0
 
-[node name="Sinus2" type="Label" parent="Sinus2bereich"]
+[node name="Sinus2" type="Label" parent="Sinus2bereich" unique_id=953746792]
 layout_mode = 2
 text = "Welle 2"
 horizontal_alignment = 1
 
-[node name="Text_Eingabe" type="GridContainer" parent="Sinus2bereich"]
+[node name="Text_Eingabe" type="GridContainer" parent="Sinus2bereich" unique_id=1788400669]
 layout_mode = 2
 size_flags_horizontal = 0
 columns = 2
 
-[node name="Amplitude" type="Label" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Amplitude" type="Label" parent="Sinus2bereich/Text_Eingabe" unique_id=257346079]
 layout_mode = 2
 text = "Amplitude"
 
-[node name="Amp_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Amp_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe" unique_id=1198225825]
 layout_mode = 2
 placeholder_text = "50.0"
 virtual_keyboard_type = 2
 
-[node name="Frequency" type="Label" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Frequency" type="Label" parent="Sinus2bereich/Text_Eingabe" unique_id=518844742]
 layout_mode = 2
 text = "Frequency"
 
-[node name="Fre_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Fre_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe" unique_id=1668755302]
 layout_mode = 2
 placeholder_text = "1.5"
 virtual_keyboard_type = 2
 
-[node name="X_verschiebung" type="Label" parent="Sinus2bereich/Text_Eingabe"]
+[node name="X_verschiebung" type="Label" parent="Sinus2bereich/Text_Eingabe" unique_id=339887091]
 layout_mode = 2
 text = "X_Verschiebung"
 
-[node name="Xver_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Xver_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe" unique_id=729686380]
 layout_mode = 2
 placeholder_text = "0.0"
 virtual_keyboard_type = 2
 
-[node name="Y_verschiebung" type="Label" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Y_verschiebung" type="Label" parent="Sinus2bereich/Text_Eingabe" unique_id=1073831757]
 layout_mode = 2
 text = "Y_Verschiebung"
 
-[node name="Yver_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe"]
+[node name="Yver_Eingabe" type="LineEdit" parent="Sinus2bereich/Text_Eingabe" unique_id=633782542]
 layout_mode = 2
 placeholder_text = "0.0"
 virtual_keyboard_type = 2
 
-[node name="Control" type="Control" parent="Sinus2bereich"]
+[node name="Control" type="Control" parent="Sinus2bereich" unique_id=887972312]
 layout_mode = 2
 
-[node name="Sinus2" parent="Sinus2bereich/Control" instance=ExtResource("2_c04v5")]
+[node name="Sinus2" parent="Sinus2bereich/Control" unique_id=631798065 instance=ExtResource("2_c04v5")]
 unique_name_in_owner = true
 position = Vector2(200, -85)
 scale = Vector2(0.8, 0.8)
 default_color = Color(0, 1, 0, 1)
 script = ExtResource("3_wifh4")
 
-[node name="Scala-Control" type="Control" parent="Sinus2bereich/Control"]
-layout_mode = 3
+[node name="Scala-Control" type="Control" parent="Sinus2bereich/Control" unique_id=2129251996]
 anchors_preset = 0
 offset_left = 200.0
 offset_top = -138.0
@@ -249,8 +247,8 @@ offset_bottom = -38.0
 scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(0, 50)
 
-[node name="1_2" type="Label" parent="Sinus2bereich/Control/Scala-Control"]
-layout_mode = 2
+[node name="1_2" type="Label" parent="Sinus2bereich/Control/Scala-Control" unique_id=2117513953]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 34.0
 offset_right = 137.0
@@ -260,7 +258,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "1/2"
 
-[node name="1s" type="Label" parent="Sinus2bereich/Control/Scala-Control"]
+[node name="1s" type="Label" parent="Sinus2bereich/Control/Scala-Control" unique_id=1167570366]
 layout_mode = 0
 offset_left = 222.0
 offset_top = 34.0
@@ -271,80 +269,79 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "1s"
 
-[node name="hbox" type="HBoxContainer" parent="Sinus2bereich/Control/Scala-Control"]
+[node name="hbox" type="HBoxContainer" parent="Sinus2bereich/Control/Scala-Control" unique_id=1319313962]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 104.0
 theme_override_constants/separation = 0
 
-[node name="Panel" type="Panel" parent="Sinus2bereich/Control/Scala-Control/hbox"]
+[node name="Panel" type="Panel" parent="Sinus2bereich/Control/Scala-Control/hbox" unique_id=403875134]
 custom_minimum_size = Vector2(2, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_54x1t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sinus2bereich/Control/Scala-Control/hbox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Sinus2bereich/Control/Scala-Control/hbox" unique_id=508671803]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="+50" type="Label" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="+50" type="Label" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=1429872412]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource("Theme_54x1t")
 text = "+50"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=668223817]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="Panel2" type="Panel" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=1089965518]
 custom_minimum_size = Vector2(235, 2)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_54x1t")
 
-[node name="-50" type="Label" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="-50" type="Label" parent="Sinus2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=48863902]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource("Theme_54x1t")
 text = "-50"
 
-[node name="Sinus1+2bereich" type="VBoxContainer" parent="."]
+[node name="Sinus1+2bereich" type="VBoxContainer" parent="." unique_id=1315015320]
 layout_mode = 0
 offset_left = 474.0
 offset_top = 30.0
 offset_right = 918.0
 offset_bottom = 390.0
 
-[node name="Control" type="Control" parent="Sinus1+2bereich"]
+[node name="Control" type="Control" parent="Sinus1+2bereich" unique_id=1995581592]
 layout_mode = 2
 
-[node name="Sinus1+2" parent="Sinus1+2bereich/Control" instance=ExtResource("2_c04v5")]
+[node name="Sinus1+2" parent="Sinus1+2bereich/Control" unique_id=994296845 instance=ExtResource("2_c04v5")]
 position = Vector2(60, 200)
 scale = Vector2(0.8, 0.8)
 width = 4.0
 default_color = Color(2.5028e-06, 0.510523, 0.458261, 1)
 script = ExtResource("4_23w5p")
 
-[node name="Sinus1" parent="Sinus1+2bereich/Control" instance=ExtResource("2_c04v5")]
+[node name="Sinus1" parent="Sinus1+2bereich/Control" unique_id=1669120620 instance=ExtResource("2_c04v5")]
 position = Vector2(60, 200)
 scale = Vector2(0.8, 0.8)
 default_color = Color(1, 0, 0, 0.392157)
 script = ExtResource("5_yetfu")
 
-[node name="Sinus2" parent="Sinus1+2bereich/Control" instance=ExtResource("2_c04v5")]
+[node name="Sinus2" parent="Sinus1+2bereich/Control" unique_id=9792945 instance=ExtResource("2_c04v5")]
 position = Vector2(60, 200)
 scale = Vector2(0.8, 0.8)
 default_color = Color(0, 1, 0, 0.392157)
 script = ExtResource("6_l7bv2")
 
-[node name="Scala-Control" type="Control" parent="Sinus1+2bereich/Control"]
-layout_mode = 3
+[node name="Scala-Control" type="Control" parent="Sinus1+2bereich/Control" unique_id=584967608]
 anchors_preset = 0
 offset_left = 60.0
 offset_top = 148.0
@@ -353,8 +350,8 @@ offset_bottom = 248.0
 scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(0, 50)
 
-[node name="1_2" type="Label" parent="Sinus1+2bereich/Control/Scala-Control"]
-layout_mode = 2
+[node name="1_2" type="Label" parent="Sinus1+2bereich/Control/Scala-Control" unique_id=321574925]
+layout_mode = 0
 offset_left = 112.0
 offset_top = 34.0
 offset_right = 137.0
@@ -364,7 +361,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "1/2"
 
-[node name="1s" type="Label" parent="Sinus1+2bereich/Control/Scala-Control"]
+[node name="1s" type="Label" parent="Sinus1+2bereich/Control/Scala-Control" unique_id=1773334808]
 layout_mode = 0
 offset_left = 222.0
 offset_top = 34.0
@@ -375,69 +372,69 @@ size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "1s"
 
-[node name="hbox" type="HBoxContainer" parent="Sinus1+2bereich/Control/Scala-Control"]
+[node name="hbox" type="HBoxContainer" parent="Sinus1+2bereich/Control/Scala-Control" unique_id=1370362339]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 104.0
 theme_override_constants/separation = 0
 
-[node name="Panel" type="Panel" parent="Sinus1+2bereich/Control/Scala-Control/hbox"]
+[node name="Panel" type="Panel" parent="Sinus1+2bereich/Control/Scala-Control/hbox" unique_id=541118671]
 custom_minimum_size = Vector2(2, 100)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_54x1t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Sinus1+2bereich/Control/Scala-Control/hbox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Sinus1+2bereich/Control/Scala-Control/hbox" unique_id=250490296]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="+50" type="Label" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="+50" type="Label" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=830024195]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource("Theme_54x1t")
 text = "+50"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=1555134901]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme_override_constants/separation = 0
 
-[node name="Panel2" type="Panel" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=1625402366]
 custom_minimum_size = Vector2(235, 2)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_54x1t")
 
-[node name="-50" type="Label" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer"]
+[node name="-50" type="Label" parent="Sinus1+2bereich/Control/Scala-Control/hbox/VBoxContainer" unique_id=1105283675]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = SubResource("Theme_54x1t")
 text = "-50"
 
-[node name="Label" type="Label" parent="Sinus1+2bereich"]
+[node name="Label" type="Label" parent="Sinus1+2bereich" unique_id=226897700]
 layout_mode = 2
 text = "Welle 3"
 horizontal_alignment = 1
 
-[node name="Tasten_zum_aneigen_der_wellen" type="GridContainer" parent="Sinus1+2bereich/Label"]
+[node name="Tasten_zum_aneigen_der_wellen" type="GridContainer" parent="Sinus1+2bereich/Label" unique_id=8523524]
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 140.0
 columns = 2
 
-[node name="Mischen-Label" type="Label" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen"]
+[node name="Mischen-Label" type="Label" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen" unique_id=1677216724]
 layout_mode = 2
 text = "Mischen"
 
-[node name="Einzeln-Label" type="Label" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen"]
+[node name="Einzeln-Label" type="Label" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen" unique_id=1499641962]
 layout_mode = 2
 text = "Einzeln"
 
-[node name="Welle1-mischen_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen"]
+[node name="Welle1-mischen_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen" unique_id=369674381]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/icon_pressed_color = Color(0.977937, 0.977937, 0.977937, 1)
@@ -445,7 +442,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_7fwq1")
 text = "Welle1"
 script = ExtResource("5_28wuw")
 
-[node name="Welle1-einzeln_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen"]
+[node name="Welle1-einzeln_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen" unique_id=1236458161]
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/icon_pressed_color = Color(0.977937, 0.977937, 0.977937, 1)
@@ -453,19 +450,19 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_7fwq1")
 text = "Welle1"
 script = ExtResource("6_wifh4")
 
-[node name="Welle2-mischen_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen"]
+[node name="Welle2-mischen_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen" unique_id=1946474394]
 layout_mode = 2
 focus_mode = 0
 text = "Welle2"
 script = ExtResource("6_yetfu")
 
-[node name="Welle2-einzeln_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen"]
+[node name="Welle2-einzeln_Button" type="Button" parent="Sinus1+2bereich/Label/Tasten_zum_aneigen_der_wellen" unique_id=2060017856]
 layout_mode = 2
 focus_mode = 0
 text = "Welle2"
 script = ExtResource("8_23w5p")
 
-[node name="Zurück-button" type="Button" parent="."]
+[node name="Zurück-button" type="Button" parent="." unique_id=1052941009]
 layout_mode = 0
 offset_left = 800.0
 offset_top = 450.0
