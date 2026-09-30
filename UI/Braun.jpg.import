@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cm8ielqp4330k"
-path="res://.godot/imported/Braun.jpg-f3f034eaab22ca51f6bdc91eec5c2514.ctex"
+path="res://.godot/imported/Braun.jpg-b6531e194b739d02b4e3c94afba04d83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Color Plate/Braun.jpg"
-dest_files=["res://.godot/imported/Braun.jpg-f3f034eaab22ca51f6bdc91eec5c2514.ctex"]
+source_file="res://UI/Braun.jpg"
+dest_files=["res://.godot/imported/Braun.jpg-b6531e194b739d02b4e3c94afba04d83.ctex"]
 
 [params]
 
