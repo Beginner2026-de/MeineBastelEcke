@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6w2llwaw2d3u"]
 
-[ext_resource type="Script" uid="uid://dgeb7keo48lkf" path="res://Sinus-Simulation/Sinus-Wellen-Simulaton.gd" id="1_4dnlt"]
+[ext_resource type="Script" uid="uid://dgeb7keo48lkf" path="res://Sinus-Simulation2/Sinus-Wellen-Simulaton.gd" id="1_4dnlt"]
 [ext_resource type="Script" uid="uid://cwjrrvlspox5q" path="res://Sinus-Simulation/simulation_stoppen_button.gd" id="2_54x1t"]
 [ext_resource type="PackedScene" uid="uid://bvbscjgvy6ius" path="res://Sinus-Simulation/sinus_1.tscn" id="2_c04v5"]
 [ext_resource type="Script" uid="uid://dtnf284a7e6nx" path="res://Sinus-Simulation/sinus_2.gd" id="3_wifh4"]

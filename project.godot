@@ -22,8 +22,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 ThemeManager="*uid://ijj2046pa6vk"
-SinusWellen="*res://Sinus-Simulation/Sinus-Wellen-Simulaton.gd"
+SinusWellen="*res://Sinus-Simulation2/Sinus-Wellen-Simulaton.gd"
 CONWAYSVARIABEL="*res://Conway`s-game-of-life-tilemap/global-varabels.gd"
+SinusSimulation2="*uid://bnhs5i3v1bf0w"
 
 [display]
 
