@@ -3,16 +3,6 @@
 [ext_resource type="Script" uid="uid://b8rscerrftfpr" path="res://Hauptmenü/hauptmenü.gd" id="1_fwphb"]
 [ext_resource type="Script" uid="uid://cuy0vpr6xb2ih" path="res://Hauptmenü/exit_game.gd" id="2_m1wvj"]
 
-[sub_resource type="GDScript" id="GDScript_m1wvj"]
-script/source = "extends Button
-
-
-
-
-func _on_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://Sinus-Simulation/kurvenbereich.tscn\")
-"
-
 [node name="Hauptmenü" type="Control" unique_id=1113670243]
 layout_mode = 3
 anchors_preset = 0
@@ -59,11 +49,6 @@ theme_override_constants/margin_bottom = 10
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/MarginContainer" unique_id=1588161650]
 layout_mode = 2
 
-[node name="Sinus Wellen Simulation 1" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1945287995]
-layout_mode = 2
-text = "Sinus Wellen Simulation"
-script = SubResource("GDScript_m1wvj")
-
 [node name="Sinus Wellen Simulation 2" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=1809714861]
 layout_mode = 2
 text = "Sinus Wellen Simulation 2"
@@ -93,7 +78,6 @@ size_flags_horizontal = 4
 text = "Exit"
 script = ExtResource("2_m1wvj")
 
-[connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Sinus Wellen Simulation 1" to="." method="_on_sinus_wellen_simulation_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Sinus Wellen Simulation 2" to="." method="_on_sinus_wellen_simulation_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Conways-game-of-life-tilemap" to="." method="_on_conwaysgameoflifetilemap_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/go-to-settings-Button" to="." method="_on_gotosettings_button_pressed"]

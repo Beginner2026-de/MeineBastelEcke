@@ -36,3 +36,16 @@ func _process(delta: float) -> void:
 	# NEU: Verwendet die LOKALEN Variablen statt SinusWellen.*
 	var y = amplitude * sin(frequency * bewegungs_geschwindigkeit + offset_x) + offset_y
 	set_point_position(num_points - 1, Vector2((num_points - 1) * abstand, y))
+	
+# 2. Textänderungen in den LOKALEN Variablen der Instanz speichern
+func _on_amp_eingabe_1_text_changed(new_text: String) -> void:
+	amplitude = float(new_text)
+
+func _on_fre_eingabe_1_text_changed(new_text: String) -> void:
+	frequency = float(new_text)
+
+func _on_xver_eingabe_1_text_changed(new_text: String) -> void:
+	offset_x = float(new_text)
+
+func _on_yver_eingabe_1_text_changed(new_text: String) -> void:
+	offset_y = float(new_text)
