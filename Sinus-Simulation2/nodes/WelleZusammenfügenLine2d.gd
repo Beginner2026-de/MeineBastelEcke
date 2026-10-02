@@ -11,12 +11,16 @@ var bewegungs_geschwindigkeit: float = 0.0
 func _ready() -> void:
 	clear_points()
 	start_line()
+	var manager = SinusWellen # Oder über Pfad / Gruppe suchen
+	if manager and manager.has_signal("set_new_point_wellen_zusammen_steller"):
+		manager.set_new_point_wellen_zusammen_steller.connect(_set_new_point_wellen_zusammen_steller)
 
 func start_line():
 	for i in range(num_points):
 		add_point(Vector2(i * abstand, 0))
 
-func print_new_ponit(data):
+func _set_new_point_wellen_zusammen_steller():
+	var data = $"../..".get_sum_from_all_incomming_ports()
 	# Punkte nach links verschieben
 	for i in range(num_points - 1):
 		var next_pos = get_point_position(i + 1)
