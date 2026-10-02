@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf30euwej1mvm"]
 
 [ext_resource type="Script" uid="uid://bjnc5588l0nnh" path="res://Sinus-Simulation2/nodes/welle_erstellen.gd" id="1_8gxad"]
-[ext_resource type="PackedScene" uid="uid://bvbscjgvy6ius" path="res://Sinus-Simulation/sinus_1.tscn" id="1_qgmbb"]
+[ext_resource type="Script" uid="uid://tih6m4s7mmn6" path="res://Sinus-Simulation2/nodes/WelleErstellenLine2d.gd" id="2_8gxad"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilj65"]
 bg_color = Color(1, 1, 1, 1)
@@ -88,10 +88,15 @@ virtual_keyboard_type = 2
 [node name="Control" type="Control" parent="Sinus1bereich" unique_id=315857274]
 layout_mode = 2
 
-[node name="WelleErstellenLine2d" parent="Sinus1bereich/Control" unique_id=1372764562 instance=ExtResource("1_qgmbb")]
+[node name="WelleErstellenLine2d" type="Line2D" parent="Sinus1bereich/Control" unique_id=1372764562]
 position = Vector2(200, -85)
 scale = Vector2(0.8, 0.8)
+width = 2.0
 default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("2_8gxad")
 
 [node name="Scala-Control" type="Control" parent="Sinus1bereich/Control" unique_id=1280227711]
 anchors_preset = 0

@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://cypx130nkc2j7"]
 
-[ext_resource type="PackedScene" uid="uid://bvbscjgvy6ius" path="res://Sinus-Simulation/sinus_1.tscn" id="1_7i737"]
 [ext_resource type="Script" uid="uid://d0gblgl1yi455" path="res://Sinus-Simulation2/nodes/WelleZusammenFügen.gd" id="1_icxj3"]
 [ext_resource type="Script" uid="uid://c70ygujtkuvn7" path="res://Sinus-Simulation2/nodes/WelleZusammenfügenLine2d.gd" id="3_fdwow"]
 
@@ -48,11 +47,15 @@ script = ExtResource("1_icxj3")
 [node name="Control" type="Control" parent="." unique_id=877888689]
 layout_mode = 2
 
-[node name="WellezusammenFügen" parent="Control" unique_id=338724369 instance=ExtResource("1_7i737")]
+[node name="WellezusammenFügen" type="Line2D" parent="Control" unique_id=338724369]
 position = Vector2(2, 48)
 scale = Vector2(0.8, 0.8)
 points = PackedVector2Array(0, 0)
+width = 2.0
 default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
 script = ExtResource("3_fdwow")
 
 [node name="Scala-Control" type="Control" parent="Control" unique_id=128836540]
