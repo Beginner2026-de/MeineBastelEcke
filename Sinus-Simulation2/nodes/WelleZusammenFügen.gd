@@ -5,7 +5,10 @@ extends GraphNode
 var list_for_all_data = [0.0,0.0]
 func receive_input_data(to_port, data):
 	print("Port ", to_port, " data ", data)
-	list_for_all_data.insert(to_port,data)
+	list_for_all_data.set(to_port,data)
+	print(list_for_all_data)
+	print(list_for_all_data[0]+ list_for_all_data[1])
+	
 	
 	
 	
