@@ -2,9 +2,10 @@ extends Line2D
 
 # 1. Lokale Variablen für jede Instanz definieren
 # (Startwerte kannst du optional als Fallback aus SinusWellen laden)
-var num_points: int = SinusWellen.num_points
-var abstand: float = SinusWellen.abstand
-var geschwindigkeit: float = SinusWellen.geschwindigkeit
+
+var num_points: int = SinusWellen.get_num_points()
+var abstand: float = SinusWellen.get_abstand()
+var geschwindigkeit: float = SinusWellen.get_geschwindigkeit()
 
 var amplitude: float = 50
 var frequency: float = 20
@@ -22,10 +23,6 @@ func start_line():
 		add_point(Vector2(i * abstand, 0))
 
 func _process(delta: float) -> void:
-	# Globale Anhalte-Abfrage (falls SinusWellen das Steuerungssignal hält)
-	if SinusWellen.simulatoin_anhalten == 1:
-		return
-
 	bewegungs_geschwindigkeit += geschwindigkeit * delta
 
 	# Punkte nach links verschieben
