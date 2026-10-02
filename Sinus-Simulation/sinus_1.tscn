@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bvbscjgvy6ius"]
 
-[ext_resource type="Script" uid="uid://tih6m4s7mmn6" path="res://Sinus-Simulation/WelleErstellenLine2d.gd" id="1_slm7e"]
+[ext_resource type="Script" uid="uid://tih6m4s7mmn6" path="res://Sinus-Simulation2/nodes/WelleErstellenLine2d.gd" id="1_slm7e"]
 
-[node name="Sinus1" type="Line2D"]
+[node name="Sinus1" type="Line2D" unique_id=1786111724]
 position = Vector2(10, 200)
 width = 2.0
 joint_mode = 2

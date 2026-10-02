@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bvbscjgvy6ius" path="res://Sinus-Simulation/sinus_1.tscn" id="1_7i737"]
 [ext_resource type="Script" uid="uid://d0gblgl1yi455" path="res://Sinus-Simulation2/nodes/WelleZusammenFügen.gd" id="1_icxj3"]
-[ext_resource type="Script" uid="uid://c70ygujtkuvn7" path="res://Sinus-Simulation/WelleZusammenfügenLine2d.gd" id="3_fdwow"]
+[ext_resource type="Script" uid="uid://c70ygujtkuvn7" path="res://Sinus-Simulation2/nodes/WelleZusammenfügenLine2d.gd" id="3_fdwow"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlym6"]
 bg_color = Color(1, 1, 1, 1)

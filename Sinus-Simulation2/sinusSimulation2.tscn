@@ -60,17 +60,17 @@ theme_override_constants/margin_top = 70
 layout_mode = 2
 title = "Nodes"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer" unique_id=1754335461]
+[node name="Node Button container" type="VBoxContainer" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer" unique_id=1754335461]
 layout_mode = 2
 
-[node name="Welle-erstellen" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/VBoxContainer" unique_id=610476896]
+[node name="Welle-erstellen" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container" unique_id=610476896]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Welle-erstellen"
 script = ExtResource("3_rpxen")
 
-[node name="Welle-zusammen-fügen" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/VBoxContainer" unique_id=655159260]
+[node name="Welle-zusammen-fügen" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container" unique_id=655159260]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -78,5 +78,5 @@ text = "Zusammen fügen"
 script = ExtResource("4_oh2rd")
 
 [connection signal="pressed" from="GraphEdit/MarginContainer/Back-Button" to="GraphEdit/MarginContainer/Back-Button" method="_on_pressed"]
-[connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/VBoxContainer/Welle-erstellen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/VBoxContainer/Welle-erstellen" method="_on_pressed"]
-[connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/VBoxContainer/Welle-zusammen-fügen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/VBoxContainer/Welle-zusammen-fügen" method="_on_pressed"]
+[connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-erstellen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-erstellen" method="_on_pressed"]
+[connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-zusammen-fügen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-zusammen-fügen" method="_on_pressed"]

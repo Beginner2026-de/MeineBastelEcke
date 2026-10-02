@@ -89,7 +89,6 @@ virtual_keyboard_type = 2
 layout_mode = 2
 
 [node name="WelleErstellenLine2d" parent="Sinus1bereich/Control" unique_id=1372764562 instance=ExtResource("1_qgmbb")]
-unique_name_in_owner = true
 position = Vector2(200, -85)
 scale = Vector2(0.8, 0.8)
 default_color = Color(1, 0, 0, 1)

@@ -21,7 +21,7 @@ func _ready() -> void:
 func start_line():
 	for i in range(num_points):
 		add_point(Vector2(i * abstand, 0))
-
+var new_point
 func _process(delta: float) -> void:
 	bewegungs_geschwindigkeit += geschwindigkeit * delta
 
@@ -31,8 +31,12 @@ func _process(delta: float) -> void:
 		set_point_position(i, Vector2(next_pos.x - abstand, next_pos.y))
 	
 	# NEU: Verwendet die LOKALEN Variablen statt SinusWellen.*
-	var y = amplitude * sin(frequency * bewegungs_geschwindigkeit + offset_x) + offset_y
-	set_point_position(num_points - 1, Vector2((num_points - 1) * abstand, y))
+	new_point = amplitude * sin(frequency * bewegungs_geschwindigkeit + offset_x) + offset_y
+	set_point_position(num_points - 1, Vector2((num_points - 1) * abstand, new_point))
+
+func get_new_point():
+	return new_point
+	
 	
 # 2. Textänderungen in den LOKALEN Variablen der Instanz speichern
 func _on_amp_eingabe_1_text_changed(new_text: String) -> void:
