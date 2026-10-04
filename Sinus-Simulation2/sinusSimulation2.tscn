@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://pla0w14kyeln" path="res://Sinus-Simulation2/back_button.gd" id="2_8rmm2"]
 [ext_resource type="Script" uid="uid://cke521awpuody" path="res://Sinus-Simulation2/welle_erstellen-button.gd" id="3_rpxen"]
 [ext_resource type="Script" uid="uid://bqertj7gcmryp" path="res://Sinus-Simulation2/welle_zusammen_fügen.gd" id="4_oh2rd"]
+[ext_resource type="Script" uid="uid://uklmnleqqrnp" path="res://Sinus-Simulation2/button.gd" id="5_757h7"]
 
 [node name="SinusSimulation2" type="Control" unique_id=303640558]
 layout_mode = 3
@@ -77,6 +78,12 @@ size_flags_vertical = 4
 text = "Zusammen fügen"
 script = ExtResource("4_oh2rd")
 
+[node name="Button" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container" unique_id=709072674]
+layout_mode = 2
+text = "Test"
+script = ExtResource("5_757h7")
+
 [connection signal="pressed" from="GraphEdit/MarginContainer/Back-Button" to="GraphEdit/MarginContainer/Back-Button" method="_on_pressed"]
 [connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-erstellen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-erstellen" method="_on_pressed"]
 [connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-zusammen-fügen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle-zusammen-fügen" method="_on_pressed"]
+[connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Button" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Button" method="_on_pressed"]

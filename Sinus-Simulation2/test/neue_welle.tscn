@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://doc504xbfauql"]
+
+[ext_resource type="Script" uid="uid://d0cnitk0jleyc" path="res://Sinus-Simulation2/test/SineWaveCanvas.gd" id="1_0fe08"]
+
+[node name="NeueWelle" type="GraphNode" unique_id=1768842229]
+offset_right = 429.0
+offset_bottom = 214.0
+title = "Test"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=577894529]
+script = ExtResource("1_0fe08")
