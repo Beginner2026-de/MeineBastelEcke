@@ -1,58 +1,154 @@
 @tool
+class_name WaveVisualizer
 extends Node2D
 
-var amplitude: float = 50
-var frequency: float = 20
-var visible_cycles: int = 2
+var global_time: float = 0.0
+var points_for_line: Array  = []
 
-@export var margin: Vector2 = Vector2(20, 20)
+# Hilfsvariable, um Re-Entry-Schleifen beim Zeichnen zu verhindern
+var _is_updating_size: bool = false
 
+var canvas_size: Vector2 = Vector2(400, 200)
 
-# Berechnete Canvas-Größe
-var canvas_size: Vector2 = Vector2.ZERO
+var margin: Vector2 = Vector2(10, 10)
+
+var visible_cycles: float = 2.0
+
+var frequency: float = 1.0
+
+var amplitude: float = 50.0
+
+var abstand: float = 1.0
+
+var background_color: Color = Color(0.15, 0.15, 0.2, 0.5)
+
+var border_color: Color = Color(0.4, 0.6, 1.0)
+
+var line_color: Color = Color(0.2, 0.9, 0.4)
+
+var center_line_color: Color = Color(0.3, 0.3, 0.4)
+
+		
 func _ready() -> void:
 	var manager = SinusWellen # Oder über Pfad / Gruppe suchen
 	if manager and manager.has_signal("set_new_point_wellen_ersteller"):
-		manager.set_new_point_wellen_ersteller.connect(_set_new_point_wellen_ersteller)
+		manager.set_new_point_wellen_ersteller.connect(setup_redraw)
+	start_line()
+	
+func start_line() -> void:
+	points_for_line.clear()
+	var num_points = get_num_points()
+	var center_y = canvas_size.y / 2.0
+	
+	for i in range(num_points):
+		# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
+		points_for_line.append(Vector2(i * abstand, center_y))
+
+func get_num_points() -> int:
+	# Muss eine Ganzzahl (int) zurückgeben, z. B. berechnet aus Canvas-Breite
+	var draw_width = canvas_size.x - (margin.x * 2)
+	if abstand > 0:
+		return int(draw_width / abstand)
+	return 50
+	
+var new_point
+
+func setup_redraw(p_time: float) -> void:
+	# p_time umbenannt, damit die Member-Variable global_time angesprochen wird
+	global_time = p_time
+	queue_redraw()
+
+
+func _process(delta: float) -> void:
+	# Im Editor läuft das Skript via @tool, global_time wird hochgezählt
+	global_time += delta
+	queue_redraw()
+
+
+# --- HAUPT-ZEICHENMETHODE ---
+func _draw() -> void:
+	# SICHERHEITS-CHECK: Zeichne nur, wenn alle Farbobjekte gültige Color-Instanzen sind
+	if not _are_colors_valid():
+		return
+		
+	_update_canvas_size()
+	_draw_background_and_border()
+	_draw_center_line()
+	_draw_wave()
+
+
+func _are_colors_valid() -> bool:
+	return (background_color is Color and 
+			border_color is Color and 
+			line_color is Color and 
+			center_line_color is Color)
+
+
+# --- HILFSFUNKTIONEN ---
+
+func _draw_background_and_border() -> void:
+	var rect = Rect2(Vector2.ZERO, canvas_size)
+	draw_rect(rect, background_color, true)
+	draw_rect(rect, border_color, false, 2.0)
+
+
+func _draw_center_line() -> void:
+	var center_y = canvas_size.y / 2.0
+	var start_point = Vector2(margin.x, center_y)
+	var end_point = Vector2(canvas_size.x - margin.x, center_y)
+	
+	draw_line(start_point, end_point, center_line_color, 1.0)
+
+
+func _draw_wave() -> void:
+	var points = _calculate_wave_points()
+	
+	if points.size() > 1:
+		draw_polyline(points, line_color, 2.5, true)
+
+
+func _calculate_wave_points() -> PackedVector2Array:
+	var result_points = PackedVector2Array()
+	var center_y = canvas_size.y / 2.0
+	
+	# Fallback, falls das Array noch nicht initialisiert wurde
+	if points_for_line.is_empty():
+		return result_points
+
+	# 1. Alle vorhandenen y-Werte um eine Position nach links verschieben
+	# Wir überschreiben Index i mit dem Wert von Index i + 1
+	for i in range(points_for_line.size() - 1):
+		points_for_line[i].y = points_for_line[i + 1].y
+	
+	# 2. Den NEUEN Sinus-Wert für den ganz rechten Punkt berechnen
+	# ACHTUNG: new_point muss ein Vector2 sein, nicht nur ein float!
+	var last_index = points_for_line.size() - 1
+	var last_x = points_for_line[last_index].x
+	
+	var new_y = center_y - (sin(frequency * global_time) * amplitude)
+	points_for_line[last_index] = Vector2(last_x, new_y)
+	
+	# 3. Das erstelle Array in ein PackedVector2Array umwandeln und mit Rand/Margin versehen
+	for point in points_for_line:
+		result_points.append(point + Vector2(margin.x, 0))
+		
+	return result_points
 
 
 func _update_canvas_size() -> void:
-	# Wellenlänge λ in Pixeln (willkürliche Basis-Skalierung, z. B. 100px pro Zyklus bei Frequenz 1.0)
-	var wavelength = 200.0 / frequency
-	
-	# Gesamte Breite = Wellenlänge * Anzahl der Wellen + Ränder
+	var wavelength = frequency * 5
 	var width = (wavelength * visible_cycles) + (margin.x * 2)
-	
-	# Gesamte Höhe = 2x Amplitude (oben + unten) + Ränder
 	var height = (amplitude * 2.0) + (margin.y * 2)
 	
+	# Verhindert, dass die Zuweisung erneut queue_redraw() auslöst
+	_is_updating_size = true
 	canvas_size = Vector2(width, height)
+	_is_updating_size = false
 
-func _set_new_point_wellen_ersteller(gloabal_time: float) -> void:
-	_update_canvas_size()
-	# 1. Canvas-Hintergrund & Rahmen zeichnen
-	var rect = Rect2(Vector2.ZERO, canvas_size)
-	draw_rect(rect, Color(0.15, 0.15, 0.2, 0.5), true) # Hintergrund
-	draw_rect(rect, Color(0.4, 0.6, 1.0), false, 2.0)   # Rahmen
-	
-	# 2. Nulllinie (Zentriert in der Höhe)
-	var center_y = canvas_size.y / 2.0
-	draw_line(Vector2(margin.x, center_y), Vector2(canvas_size.x - margin.x, center_y), Color(0.3, 0.3, 0.4), 1.0)
-	
-	# 3. Sinus-Welle berechnen und zeichnen
-	var draw_width = canvas_size.x - (margin.x * 2)
-	var points = PackedVector2Array()
-	var step_size = 2.0 # Pixel-Schrittweite für glatte Linie
-	
-	var x = 0.0
-	while x <= draw_width:
-		# Mathematische Formel: y = A * sin(2 * PI * f * (x / λ_base))
-		var progress = x / draw_width
-		var angle = progress * visible_cycles * TAU
-		var y = center_y - (sin(angle * frequency* gloabal_time) * amplitude)
-		
-		points.append(Vector2(x + margin.x, y))
-		x += step_size
-	
-	if points.size() > 1:
-		draw_polyline(points, Color(0.2, 0.9, 0.4), 2.5, true)
+
+func _on_amp_eingabe_1_text_changed(new_text: String) -> void:
+	amplitude = float(new_text)
+
+
+func _on_fre_eingabe_1_text_changed(new_text: String) -> void:
+	frequency = float(new_text)

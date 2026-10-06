@@ -1,11 +1,69 @@
 [gd_scene format=3 uid="uid://doc504xbfauql"]
 
 [ext_resource type="Script" uid="uid://d0cnitk0jleyc" path="res://Sinus-Simulation2/test/SineWaveCanvas.gd" id="1_0fe08"]
+[ext_resource type="Script" uid="uid://bp5std0r77hxw" path="res://Sinus-Simulation2/test/container.gd" id="1_0uhul"]
 
 [node name="NeueWelle" type="GraphNode" unique_id=1768842229]
 offset_right = 429.0
 offset_bottom = 214.0
 title = "Test"
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
 
-[node name="Node2D" type="Node2D" parent="." unique_id=577894529]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=560117653]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=381019711]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Text_Eingabe" type="GridContainer" parent="HBoxContainer/VBoxContainer" unique_id=155738292]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+columns = 2
+
+[node name="Amplitude" type="Label" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=583726953]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Amplitude"
+
+[node name="Amp_Eingabe1" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=787020811]
+layout_mode = 2
+size_flags_vertical = 6
+placeholder_text = "50.0"
+max_length = 4
+emoji_menu_enabled = false
+virtual_keyboard_type = 3
+
+[node name="Frequency" type="Label" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=1450481583]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Frequency"
+
+[node name="Fre_Eingabe1" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=2064304734]
+layout_mode = 2
+size_flags_vertical = 6
+placeholder_text = "20.0"
+virtual_keyboard_type = 3
+
+[node name="Container" type="Container" parent="HBoxContainer" unique_id=1713772683]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_0uhul")
+
+[node name="Node2D" type="Node2D" parent="HBoxContainer/Container" unique_id=577894529]
+position = Vector2(14, 3)
 script = ExtResource("1_0fe08")
+
+[connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Amp_Eingabe1" to="HBoxContainer/Container/Node2D" method="_on_amp_eingabe_1_text_changed"]
+[connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Fre_Eingabe1" to="HBoxContainer/Container/Node2D" method="_on_fre_eingabe_1_text_changed"]
