@@ -14,7 +14,7 @@ var margin: Vector2 = Vector2(10, 10)
 
 var visible_cycles: float = 2.0
 
-var frequency: float = 1.0
+
 
 var amplitude: float = 50.0
 

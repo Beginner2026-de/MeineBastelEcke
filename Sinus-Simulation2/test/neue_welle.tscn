@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0cnitk0jleyc" path="res://Sinus-Simulation2/test/SineWaveCanvas.gd" id="1_0fe08"]
 [ext_resource type="Script" uid="uid://bp5std0r77hxw" path="res://Sinus-Simulation2/test/container.gd" id="1_0uhul"]
+[ext_resource type="Script" uid="uid://bmnvj74l2wxr4" path="res://Sinus-Simulation2/test/neue_welle.gd" id="1_cupfh"]
 
 [node name="NeueWelle" type="GraphNode" unique_id=1768842229]
 offset_right = 429.0
@@ -16,6 +17,7 @@ slot/0/right_type = 0
 slot/0/right_color = Color(1, 1, 1, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
+script = ExtResource("1_cupfh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=560117653]
 layout_mode = 2

@@ -1,19 +1,32 @@
 @tool
-extends Control
+extends Container # Oder Control
 
-@onready var node = $Node2D
+var margin: Vector2 = Vector2(10, 10)
+
+var amplitude: float = 50.0
+
+var frequency: float = 20.0
+
+var visible_cycles: float = 2.0
+
 
 func _ready() -> void:
-	# 1. Position ABFRAGEN:
-	var me_global_pos: Vector2 = global_position  # Eigene Position des Control-Nodes
-	var child_global_pos: Vector2 = node.global_position  # Position des Child-Nodes (Node2D)
+	_update_minimum_size()
+
+
+# Berechnet die Mindestgröße für den Parent-GraphNode/HBoxContainer
+func _update_minimum_size() -> void:
+	# 1. Benötigte Höhe: 2x Amplitude (oben + unten Peak) + Ränder
+	var min_height = (amplitude * 2.0) + (margin.y * 2.0)
 	
-	print("Meine globale Position: ", me_global_pos)
-	print("Node2D globale Position: ", child_global_pos)
+	# 2. Benötigte Breite: Basiert auf der Wellenlänge und den sichtbaren Zyklen
+	# Pass den Faktor (z. B. 10.0) so an, wie weit die Welle gezogen werden soll
+	var wavelength = frequency * 10.0 
+	var min_width = (wavelength * visible_cycles) + (margin.x * 2.0)
 	
-	# 2. Position SETZEN:
-	# Sets die globale Position deines Control-Nodes auf z.B. (100, 200)
-	global_position = Vector2(100, 200)
+	# Den Container anweisen, sich mindestens so groß zu machen
+	custom_minimum_size = Vector2(min_width, min_height)
 	
-	# Sets die globale Position des Unter-Nodes
-	#node.global_position = Vector2(150, 200)
+	# Signalisiert dem GraphNode / HBoxContainer, das Layout neu zu berechnen
+	update_minimum_size()
+	queue_redraw()
