@@ -130,8 +130,7 @@ func _calculate_wave_points() -> PackedVector2Array:
 
 
 func _update_canvas_size() -> void:
-	var wavelength = frequency / 10
-	var width = (wavelength * visible_cycles) + (margin.x * 2)
+	var width = num_points
 	var height = (amplitude * 2.0) + (margin.y * 2)
 	
 	# Verhindert, dass die Zuweisung erneut queue_redraw() auslöst
