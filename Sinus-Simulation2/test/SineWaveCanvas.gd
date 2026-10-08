@@ -1,6 +1,7 @@
 @tool
-class_name WaveVisualizer
+ 
 extends Node2D
+
 
 var global_time: float = 0.0
 var points_for_line: Array  = []
@@ -14,9 +15,8 @@ var margin: Vector2 = Vector2(10, 10)
 
 var visible_cycles: float = 2.0
 
-
-
-var amplitude: float = 50.0
+var frequency : float
+var amplitude: float
 
 var abstand: float = 1.0
 
@@ -56,12 +56,6 @@ var new_point
 func setup_redraw(p_time: float) -> void:
 	# p_time umbenannt, damit die Member-Variable global_time angesprochen wird
 	global_time = p_time
-	queue_redraw()
-
-
-func _process(delta: float) -> void:
-	# Im Editor läuft das Skript via @tool, global_time wird hochgezählt
-	global_time += delta
 	queue_redraw()
 
 
@@ -146,9 +140,8 @@ func _update_canvas_size() -> void:
 	_is_updating_size = false
 
 
-func _on_amp_eingabe_1_text_changed(new_text: String) -> void:
-	amplitude = float(new_text)
-
-
-func _on_fre_eingabe_1_text_changed(new_text: String) -> void:
-	frequency = float(new_text)
+func _on_data_node_data_changed(key: String, value: Variant) -> void:
+	if key == "frequency":
+		frequency = value
+	if key == "amplitude":
+		amplitude = value
