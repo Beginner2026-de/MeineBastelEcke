@@ -1,9 +1,15 @@
 extends GraphNode
 class_name DataNode
 
-# Signale für Daten-Änderungen und -Abfragen
 signal data_changed(key: String, value: Variant)
 
+class NodeData:
+	var frequency: float = 2.0
+	var amplitude: float = 50.0
+
+
+# Instanz der Datenklasse erzeugen
+var local_data: NodeData = NodeData.new()
 func _ready() -> void:
 	for inhalt in local_data.get_property_list():
 		if inhalt.usage &  PROPERTY_USAGE_SCRIPT_VARIABLE:
@@ -11,20 +17,6 @@ func _ready() -> void:
 			var value: Variant = local_data.get(key)
 			data_changed.emit(key,value)
 
-# Eigene Datenklasse mit Typehints
-class NodeData:
-	var frequency: float = 2.0
-	var amplitude: float = 50.0
-
-# Instanz der Datenklasse erzeugen
-var local_data: NodeData = NodeData.new()
-
-# Liest eine Variable dynamisch per Key-Namen aus
-func get_data(key: String, default = null) -> Variant:
-	var val = local_data.get(key)
-	if val == null:
-		return default
-	return val
 
 # Setzt eine Variable dynamisch per Key-Namen und sendet das Signal
 func set_data(key: String, value: Variant) -> void:
