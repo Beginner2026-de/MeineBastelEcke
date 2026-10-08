@@ -3,30 +3,48 @@ extends Container # Oder Control
 
 var margin: Vector2 = Vector2(10, 10)
 
-var amplitude: float = 50.0
-
-var frequency: float = 20.0
-
-var visible_cycles: float = 2.0
-
+var frequency :float
+var num_points :int
+var amplitude :float
+var visible_cycles:float
 
 func _ready() -> void:
-	_update_minimum_size()
+	aktualisiere_fenster_groesse()
 
 
 # Berechnet die Mindestgröße für den Parent-GraphNode/HBoxContainer
-func _update_minimum_size() -> void:
+func aktualisiere_fenster_groesse() -> void:
 	# 1. Benötigte Höhe: 2x Amplitude (oben + unten Peak) + Ränder
 	var min_height = (amplitude * 2.0) + (margin.y * 2.0)
-	
-	# 2. Benötigte Breite: Basiert auf der Wellenlänge und den sichtbaren Zyklen
-	# Pass den Faktor (z. B. 10.0) so an, wie weit die Welle gezogen werden soll
-	var wavelength = frequency * 10.0 
-	var min_width = (wavelength * visible_cycles) + (margin.x * 2.0)
+	var min_width = (num_points * visible_cycles) + (margin.x * 2.0)
 	
 	# Den Container anweisen, sich mindestens so groß zu machen
-	custom_minimum_size = Vector2(min_width, min_height)
+	custom_minimum_size = (Vector2(min_width,min_height))
+	size = custom_maximum_size
 	
-	# Signalisiert dem GraphNode / HBoxContainer, das Layout neu zu berechnen
-	update_minimum_size()
+		# 2. Den übergeordneten Node suchen
+	var parent = get_parent()
+	
+	# SCHLEIFE: Wir suchen nach oben, ob dieses Element in einem GraphNode steckt
+	while parent != null:
+		if parent is GraphNode:
+			# Wenn wir den GraphNode gefunden haben, zwingen wir IHN zum Schrumpfen!
+			parent.size = Vector2.ZERO 
+			break # Schleife beenden
+		
+		# Falls noch nicht gefunden, eine Ebene höher im Baum schauen
+		parent = parent.get_parent()
 	queue_redraw()
+
+
+func _on_data_node_data_changed(key: String, value: Variant) -> void:
+		#print("Einkommende Daten= Variabel ",key ," Wert ", value)
+		if key == "frequency":
+			frequency = value
+		if key == "amplitude":
+			amplitude = value
+		if key == "num_points":
+			num_points = int(value)
+		if key == "visible_cycles":
+			visible_cycles = value
+			aktualisiere_fenster_groesse()

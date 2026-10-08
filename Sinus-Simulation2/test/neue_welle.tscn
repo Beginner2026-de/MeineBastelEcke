@@ -7,6 +7,8 @@
 [node name="data_node" type="GraphNode" unique_id=1768842229]
 offset_right = 503.0
 offset_bottom = 331.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 title = "Test"
 slot/0/left_enabled = false
 slot/0/left_type = 0
@@ -21,7 +23,6 @@ script = ExtResource("1_cupfh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=560117653]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=381019711]
 layout_mode = 2
@@ -70,17 +71,19 @@ text = "N Zyklen"
 
 [node name="N Zklen" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=1718079561]
 layout_mode = 2
-placeholder_text = "2.0"
+placeholder_text = "1.0"
 
 [node name="Container" type="Container" parent="HBoxContainer" unique_id=1713772683]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+size_flags_vertical = 4
 script = ExtResource("1_0uhul")
 
 [node name="Node2D" type="Node2D" parent="HBoxContainer/Container" unique_id=577894529]
 position = Vector2(14, 3)
 script = ExtResource("1_0fe08")
 
+[connection signal="data_changed" from="." to="HBoxContainer/Container" method="_on_data_node_data_changed"]
 [connection signal="data_changed" from="." to="HBoxContainer/Container/Node2D" method="_on_data_node_data_changed"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Amp_Eingabe1" to="." method="_on_amp_eingabe_1_text_changed"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Fre_Eingabe1" to="." method="_on_fre_eingabe_1_text_changed"]

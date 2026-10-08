@@ -6,7 +6,7 @@ signal data_changed(key: String, value: Variant)
 class NodeData:
 	var frequency: float = 2.0
 	var amplitude: float = 50.0
-	var visible_cycles: float = 2.0
+	var visible_cycles: float = 1.0
 	var num_points: int = 300
 
 # Instanz der Datenklasse erzeugen

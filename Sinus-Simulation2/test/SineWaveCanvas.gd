@@ -25,16 +25,18 @@ var line_color: Color = Color(0.2, 0.9, 0.4)
 var center_line_color: Color = Color(0.3, 0.3, 0.4)
 
 func _on_data_node_data_changed(key: String, value: Variant) -> void:
-	print("Einkommende Daten= Variabel ",key ," Wert ", value)
+	#print("Einkommende Daten= Variabel ",key ," Wert ", value)
 	if key == "frequency":
 		frequency = value
 	if key == "amplitude":
 		amplitude = value
-	if key == "visible_cycles":
-		visible_cycles = value
 	if key == "num_points":
 		num_points = int(value)
 		start_line()
+	if key == "visible_cycles":
+		visible_cycles = value
+		anpassung_der_wellen_punkte(int(value))
+		
 
 func _ready() -> void:
 	var manager = SinusWellen # Oder über Pfad / Gruppe suchen
@@ -52,8 +54,6 @@ func start_line() -> void:
 		for i in range(num_points):
 			# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
 			points_for_line.append(Vector2(i * abstand, center_y))
-	print(points_for_line)
-	print(len(points_for_line))
 
 	
 var new_point
@@ -130,10 +130,22 @@ func _calculate_wave_points() -> PackedVector2Array:
 	for point in points_for_line:
 		result_points.append(point + Vector2(margin.x, 0))
 	return result_points
-
-
+	
+func anpassung_der_wellen_punkte(visible_cycles:int)-> void:
+	var center_y = canvas_size.y / 2.0
+	var neu_punkte_anzahl = visible_cycles * num_points
+	var aktuelle_punkte_anzahl = points_for_line.size()
+	while aktuelle_punkte_anzahl != neu_punkte_anzahl:
+		if aktuelle_punkte_anzahl > neu_punkte_anzahl:
+			points_for_line.pop_at(0)
+			aktuelle_punkte_anzahl -= 1
+		if aktuelle_punkte_anzahl < neu_punkte_anzahl:
+			points_for_line.append(Vector2(aktuelle_punkte_anzahl * abstand, center_y))
+			aktuelle_punkte_anzahl += 1
+	print(points_for_line.size())
+		
 func _update_canvas_size() -> void:
-	var width = num_points +(margin.x * 2)
+	var width = (num_points * visible_cycles) + (margin.x * 2)
 	var height = (amplitude * 2.0) + (margin.y * 2)
 	
 	# Verhindert, dass die Zuweisung erneut queue_redraw() auslöst
