@@ -1,34 +1,39 @@
 @tool
- 
 extends Node2D
-
-
+class_name Welle
+signal get_data_from_haupt_control(key: String)
+#Für die Linien berechnung
 var global_time: float = 0.0
 var points_for_line: Array  = []
-
 # Hilfsvariable, um Re-Entry-Schleifen beim Zeichnen zu verhindern
 var _is_updating_size: bool = false
 
 var canvas_size: Vector2 = Vector2(400, 200)
-
 var margin: Vector2 = Vector2(10, 10)
 
-var visible_cycles: float = 2.0
 
+var visible_cycles: float
 var frequency : float
 var amplitude: float
+var num_points: int  = 200
 
 var abstand: float = 1.0
 
 var background_color: Color = Color(0.15, 0.15, 0.2, 0.5)
-
 var border_color: Color = Color(0.4, 0.6, 1.0)
-
 var line_color: Color = Color(0.2, 0.9, 0.4)
-
 var center_line_color: Color = Color(0.3, 0.3, 0.4)
 
-		
+func _on_data_node_data_changed(key: String, value: Variant) -> void:
+	if key == "frequency":
+		frequency = value
+	if key == "amplitude":
+		amplitude = value
+	if key == "visible_cycles":
+		visible_cycles = value
+	if key == "num_points":
+		num_points = value
+
 func _ready() -> void:
 	var manager = SinusWellen # Oder über Pfad / Gruppe suchen
 	if manager and manager.has_signal("set_new_point_wellen_ersteller"):
@@ -37,19 +42,15 @@ func _ready() -> void:
 	
 func start_line() -> void:
 	points_for_line.clear()
-	var num_points = get_num_points()
 	var center_y = canvas_size.y / 2.0
 	
 	for i in range(num_points):
 		# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
 		points_for_line.append(Vector2(i * abstand, center_y))
+		
+	print(points_for_line)
+	print(len(points_for_line))
 
-func get_num_points() -> int:
-	# Muss eine Ganzzahl (int) zurückgeben, z. B. berechnet aus Canvas-Breite
-	var draw_width = canvas_size.x - (margin.x * 2)
-	if abstand > 0:
-		return int(draw_width / abstand)
-	return 50
 	
 var new_point
 
@@ -125,12 +126,11 @@ func _calculate_wave_points() -> PackedVector2Array:
 	# 3. Das erstelle Array in ein PackedVector2Array umwandeln und mit Rand/Margin versehen
 	for point in points_for_line:
 		result_points.append(point + Vector2(margin.x, 0))
-		
 	return result_points
 
 
 func _update_canvas_size() -> void:
-	var wavelength = frequency * 5
+	var wavelength = frequency / 10
 	var width = (wavelength * visible_cycles) + (margin.x * 2)
 	var height = (amplitude * 2.0) + (margin.y * 2)
 	
@@ -138,10 +138,3 @@ func _update_canvas_size() -> void:
 	_is_updating_size = true
 	canvas_size = Vector2(width, height)
 	_is_updating_size = false
-
-
-func _on_data_node_data_changed(key: String, value: Variant) -> void:
-	if key == "frequency":
-		frequency = value
-	if key == "amplitude":
-		amplitude = value
