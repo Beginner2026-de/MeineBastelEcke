@@ -15,7 +15,7 @@ var margin: Vector2 = Vector2(10, 10)
 var visible_cycles: float
 var frequency : float
 var amplitude: float
-var num_points: int  = 200
+var num_points: int 
 
 var abstand: float = 1.0
 
@@ -25,6 +25,7 @@ var line_color: Color = Color(0.2, 0.9, 0.4)
 var center_line_color: Color = Color(0.3, 0.3, 0.4)
 
 func _on_data_node_data_changed(key: String, value: Variant) -> void:
+	print("Einkommende Daten= Variabel ",key ," Wert ", value)
 	if key == "frequency":
 		frequency = value
 	if key == "amplitude":
@@ -32,28 +33,30 @@ func _on_data_node_data_changed(key: String, value: Variant) -> void:
 	if key == "visible_cycles":
 		visible_cycles = value
 	if key == "num_points":
-		num_points = value
+		num_points = int(value)
+		start_line()
 
 func _ready() -> void:
 	var manager = SinusWellen # Oder über Pfad / Gruppe suchen
 	if manager and manager.has_signal("set_new_point_wellen_ersteller"):
 		manager.set_new_point_wellen_ersteller.connect(setup_redraw)
-	start_line()
+
 	
 func start_line() -> void:
 	points_for_line.clear()
 	var center_y = canvas_size.y / 2.0
 	
-	for i in range(num_points):
-		# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
-		points_for_line.append(Vector2(i * abstand, center_y))
-		
+	if  num_points == 0:
+		get_data_from_haupt_control.emit("num_points")	 
+	if num_points > 0:
+		for i in range(num_points):
+			# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
+			points_for_line.append(Vector2(i * abstand, center_y))
 	print(points_for_line)
 	print(len(points_for_line))
 
 	
 var new_point
-
 func setup_redraw(p_time: float) -> void:
 	# p_time umbenannt, damit die Member-Variable global_time angesprochen wird
 	global_time = p_time
@@ -130,7 +133,7 @@ func _calculate_wave_points() -> PackedVector2Array:
 
 
 func _update_canvas_size() -> void:
-	var width = num_points
+	var width = num_points +(margin.x * 2)
 	var height = (amplitude * 2.0) + (margin.y * 2)
 	
 	# Verhindert, dass die Zuweisung erneut queue_redraw() auslöst

@@ -85,4 +85,3 @@ script = ExtResource("1_0fe08")
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Amp_Eingabe1" to="." method="_on_amp_eingabe_1_text_changed"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Fre_Eingabe1" to="." method="_on_fre_eingabe_1_text_changed"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/N Zklen" to="." method="_on_n_zklen_text_changed"]
-[connection signal="get_data_from_haupt_control" from="HBoxContainer/Container/Node2D" to="." method="_on_node_2d_get_data_from_haupt_control"]
