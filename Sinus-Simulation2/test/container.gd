@@ -37,7 +37,7 @@ func aktualisiere_fenster_groesse() -> void:
 		parent = parent.get_parent()
 	queue_redraw()
 
-
+#
 func _on_data_node_data_changed(key: String, value: Variant) -> void:
 	#print("Einkommende Daten= Variabel ",key ," Wert ", value)
 	if key == "frequency":
