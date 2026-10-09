@@ -35,7 +35,7 @@ func _on_data_node_data_changed(key: String, value: Variant) -> void:
 		start_line()
 	if key == "visible_cycles":
 		visible_cycles = value
-		anpassung_der_wellen_punkte(float(value))
+		anpassung_der_wellen_punkte()
 		
 
 func _ready() -> void:
@@ -108,7 +108,6 @@ func _calculate_wave_points() -> PackedVector2Array:
 	
 	# Fallback, falls das Array noch nicht initialisiert wurde
 	if points_for_line.is_empty():
-		result_points.append(Vector2(0.0,0.0))
 		return result_points
 		
 	# 1. Alle vorhandenen y-Werte um eine Position nach links verschieben
@@ -133,21 +132,23 @@ func get_new_y_point()-> float:
 	print("punkt_der_gesendet_wird ",punkt_der_gesendet_wird)
 	return punkt_der_gesendet_wird
 	
-func anpassung_der_wellen_punkte(visible_cycles:float)-> void:
+func anpassung_der_wellen_punkte()-> void:
 	var center_y = canvas_size.y / 2.0
-	var neu_punkte_anzahl = visible_cycles * num_points
-	var aktuelle_punkte_anzahl = points_for_line.size()
+	var neu_punkte_anzahl:int  = roundi(visible_cycles * num_points)
+	var aktuelle_punkte_anzahl: int = points_for_line.size()
+	
+	if neu_punkte_anzahl == 0:
+		points_for_line.clear()
+		#points_for_line.append(Vector2(1 * abstand, center_y))
+		return
 	while aktuelle_punkte_anzahl != neu_punkte_anzahl:
-		if neu_punkte_anzahl == 0:
-			points_for_line.resize(1)
-			return
 		if aktuelle_punkte_anzahl > neu_punkte_anzahl:
 			points_for_line.pop_at(0)
 			aktuelle_punkte_anzahl -= 1
 		if aktuelle_punkte_anzahl < neu_punkte_anzahl:
 			points_for_line.append(Vector2(aktuelle_punkte_anzahl * abstand, center_y))
 			aktuelle_punkte_anzahl += 1
-	print(points_for_line.size())
+	print("Neue Punkte-Anzahl: ", points_for_line.size())
 		
 func _update_canvas_size() -> void:
 	var width = (num_points * visible_cycles) + (margin.x * 2)

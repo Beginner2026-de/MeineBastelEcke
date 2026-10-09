@@ -45,6 +45,8 @@ func _on_amp_eingabe_1_text_changed(new_text: String) -> void:
 
 
 func _on_n_zklen_text_changed(new_text: String) -> void:
+	var float_text: float = new_text.to_float()
+	#print(type_string(typeof(float_text)))
 	set_data("visible_cycles", float(new_text))
 
 
