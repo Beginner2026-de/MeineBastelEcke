@@ -129,7 +129,7 @@ func _calculate_wave_points() -> PackedVector2Array:
 	return result_points
 
 func get_new_y_point()-> float:
-	print("punkt_der_gesendet_wird ",punkt_der_gesendet_wird)
+	#print("punkt_der_gesendet_wird ",punkt_der_gesendet_wird)
 	return punkt_der_gesendet_wird
 	
 func anpassung_der_wellen_punkte()-> void:

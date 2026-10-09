@@ -3,12 +3,6 @@
 [ext_resource type="Script" uid="uid://d0gblgl1yi455" path="res://Sinus-Simulation2/nodes/WelleZusammenFügen.gd" id="1_icxj3"]
 [ext_resource type="Script" uid="uid://c70ygujtkuvn7" path="res://Sinus-Simulation2/nodes/WelleZusammenfügenLine2d.gd" id="3_fdwow"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlym6"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Theme" id="Theme_7i737"]
-default_font_size = 11
-
 [node name="WelleZusammenFügen" type="GraphNode" unique_id=1104531108]
 anchors_preset = 8
 anchor_left = 0.5
@@ -17,8 +11,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -140.0
 offset_top = -85.0
-offset_right = 128.0
-offset_bottom = 71.0
+offset_right = 156.0
+offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -51,84 +45,13 @@ layout_mode = 2
 unique_name_in_owner = true
 position = Vector2(2, 48)
 scale = Vector2(0.8, 0.8)
-points = PackedVector2Array(0, 0)
+points = PackedVector2Array(-179.99998, -377.49997)
 width = 2.0
 default_color = Color(1, 0, 0, 1)
 joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 script = ExtResource("3_fdwow")
-
-[node name="Scala-Control" type="Control" parent="Control" unique_id=128836540]
-anchors_preset = 0
-offset_top = -2.0
-offset_right = 232.0
-offset_bottom = -2.0
-
-[node name="1_2" type="Label" parent="Control/Scala-Control" unique_id=2116831384]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 34.0
-offset_right = 137.0
-offset_bottom = 56.3333
-scale = Vector2(0.7, 0.7)
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "1/2"
-
-[node name="1s" type="Label" parent="Control/Scala-Control" unique_id=820403608]
-layout_mode = 0
-offset_left = 222.0
-offset_top = 34.0
-offset_right = 247.0
-offset_bottom = 56.3333
-scale = Vector2(0.7, 0.7)
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "1s"
-
-[node name="hbox" type="HBoxContainer" parent="Control/Scala-Control" unique_id=1314508855]
-layout_mode = 0
-offset_right = 237.0
-offset_bottom = 100.0
-theme_override_constants/separation = 0
-
-[node name="Panel" type="Panel" parent="Control/Scala-Control/hbox" unique_id=1292128771]
-custom_minimum_size = Vector2(2, 100)
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dlym6")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Scala-Control/hbox" unique_id=852722241]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="+50" type="Label" parent="Control/Scala-Control/hbox/VBoxContainer" unique_id=1278255521]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = SubResource("Theme_7i737")
-text = "+50"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Scala-Control/hbox/VBoxContainer" unique_id=1128912464]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 0
-
-[node name="Panel2" type="Panel" parent="Control/Scala-Control/hbox/VBoxContainer" unique_id=623961923]
-custom_minimum_size = Vector2(235, 2)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 6
-theme_override_styles/panel = SubResource("StyleBoxFlat_dlym6")
-
-[node name="-50" type="Label" parent="Control/Scala-Control/hbox/VBoxContainer" unique_id=922157313]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = SubResource("Theme_7i737")
-text = "-50"
 
 [node name="Control2" type="Control" parent="." unique_id=1821085495]
 layout_mode = 2
