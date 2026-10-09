@@ -7,7 +7,7 @@ class NodeData:
 	var frequency: float = 2.0
 	var amplitude: float = 50.0
 	var visible_cycles: float = 1.0
-	var num_points: int = 300
+	var num_points: int = 225
 
 # Instanz der Datenklasse erzeugen
 var local_data: NodeData = NodeData.new()
@@ -29,6 +29,12 @@ func set_data(key: String, value: Variant) -> void:
 	else:
 		push_error("Variable '" + key + "' existiert nicht in NodeData!")
 
+func send_data(key: String):
+	for inhalt in local_data.get_property_list():
+		if inhalt.usage &  PROPERTY_USAGE_SCRIPT_VARIABLE:
+			if inhalt.name == key:
+				var value: Variant = local_data.get(key)
+				data_changed.emit(key,value)
 
 func _on_fre_eingabe_1_text_changed(new_text: String) -> void:
 	set_data("frequency",float(new_text))
@@ -43,9 +49,10 @@ func _on_n_zklen_text_changed(new_text: String) -> void:
 
 
 func _on_node_2d_get_data_from_haupt_control(key: String) -> void:
-	for inhalt in local_data.get_property_list():
-		if inhalt.usage &  PROPERTY_USAGE_SCRIPT_VARIABLE:
-			if inhalt.name == key:
-				var value: Variant = local_data.get(key)
-				data_changed.emit(key,value)
+	send_data(key)
 			
+func _on_container_get_data_from_haupt_control(key: String) -> void:
+	send_data(key)
+	
+func get_output_data():
+	return get_node("HBoxContainer/Container/Node2D").get_new_y_point()

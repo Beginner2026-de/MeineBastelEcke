@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://bmnvj74l2wxr4" path="res://Sinus-Simulation2/test/haupt-control.gd" id="1_cupfh"]
 
 [node name="data_node" type="GraphNode" unique_id=1768842229]
-offset_right = 503.0
-offset_bottom = 331.0
+offset_right = 213.0
+offset_bottom = 183.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 title = "Test"
@@ -14,9 +14,9 @@ slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = false
+slot/0/right_enabled = true
 slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_color = Color(0.2, 0.9019608, 0.4, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("1_cupfh")
@@ -67,13 +67,15 @@ layout_mode = 2
 
 [node name="anzahl der wellen zyklen" type="Label" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=130401058]
 layout_mode = 2
-text = "N Zyklen"
+text = "Sekunden"
 
-[node name="N Zklen" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=1718079561]
+[node name="Sekundem" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=1718079561]
 layout_mode = 2
 placeholder_text = "1.0"
+virtual_keyboard_type = 3
 
 [node name="Container" type="Container" parent="HBoxContainer" unique_id=1713772683]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
@@ -87,4 +89,5 @@ script = ExtResource("1_0fe08")
 [connection signal="data_changed" from="." to="HBoxContainer/Container/Node2D" method="_on_data_node_data_changed"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Amp_Eingabe1" to="." method="_on_amp_eingabe_1_text_changed"]
 [connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Fre_Eingabe1" to="." method="_on_fre_eingabe_1_text_changed"]
-[connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/N Zklen" to="." method="_on_n_zklen_text_changed"]
+[connection signal="text_changed" from="HBoxContainer/VBoxContainer/Text_Eingabe/Sekundem" to="." method="_on_n_zklen_text_changed"]
+[connection signal="get_data_from_haupt_control" from="HBoxContainer/Container" to="." method="_on_container_get_data_from_haupt_control"]

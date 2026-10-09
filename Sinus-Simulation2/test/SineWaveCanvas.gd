@@ -35,7 +35,7 @@ func _on_data_node_data_changed(key: String, value: Variant) -> void:
 		start_line()
 	if key == "visible_cycles":
 		visible_cycles = value
-		anpassung_der_wellen_punkte(int(value))
+		anpassung_der_wellen_punkte(float(value))
 		
 
 func _ready() -> void:
@@ -55,8 +55,6 @@ func start_line() -> void:
 			# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
 			points_for_line.append(Vector2(i * abstand, center_y))
 
-	
-var new_point
 func setup_redraw(p_time: float) -> void:
 	# p_time umbenannt, damit die Member-Variable global_time angesprochen wird
 	global_time = p_time
@@ -103,16 +101,16 @@ func _draw_wave() -> void:
 	
 	if points.size() > 1:
 		draw_polyline(points, line_color, 2.5, true)
-
-
+var punkt_der_gesendet_wird:float
 func _calculate_wave_points() -> PackedVector2Array:
 	var result_points = PackedVector2Array()
 	var center_y = canvas_size.y / 2.0
 	
 	# Fallback, falls das Array noch nicht initialisiert wurde
 	if points_for_line.is_empty():
+		result_points.append(Vector2(0.0,0.0))
 		return result_points
-
+		
 	# 1. Alle vorhandenen y-Werte um eine Position nach links verschieben
 	# Wir überschreiben Index i mit dem Wert von Index i + 1
 	for i in range(points_for_line.size() - 1):
@@ -123,19 +121,26 @@ func _calculate_wave_points() -> PackedVector2Array:
 	var last_index = points_for_line.size() - 1
 	var last_x = points_for_line[last_index].x
 	
-	var new_y = center_y - (sin(frequency * global_time) * amplitude)
-	points_for_line[last_index] = Vector2(last_x, new_y)
-	
+	var new_y_point: float = center_y - (sin(frequency * global_time) * amplitude)
+	punkt_der_gesendet_wird = sin(frequency * global_time) * amplitude
+	points_for_line[last_index] = Vector2(last_x, new_y_point)
 	# 3. Das erstelle Array in ein PackedVector2Array umwandeln und mit Rand/Margin versehen
 	for point in points_for_line:
 		result_points.append(point + Vector2(margin.x, 0))
 	return result_points
+
+func get_new_y_point()-> float:
+	print("punkt_der_gesendet_wird ",punkt_der_gesendet_wird)
+	return punkt_der_gesendet_wird
 	
-func anpassung_der_wellen_punkte(visible_cycles:int)-> void:
+func anpassung_der_wellen_punkte(visible_cycles:float)-> void:
 	var center_y = canvas_size.y / 2.0
 	var neu_punkte_anzahl = visible_cycles * num_points
 	var aktuelle_punkte_anzahl = points_for_line.size()
 	while aktuelle_punkte_anzahl != neu_punkte_anzahl:
+		if neu_punkte_anzahl == 0:
+			points_for_line.resize(1)
+			return
 		if aktuelle_punkte_anzahl > neu_punkte_anzahl:
 			points_for_line.pop_at(0)
 			aktuelle_punkte_anzahl -= 1
