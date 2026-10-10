@@ -25,6 +25,11 @@ ThemeManager="*uid://ijj2046pa6vk"
 SinusWellen="*res://Sinus-Simulation2/Sinus-Wellen-Simulaton.gd"
 CONWAYSVARIABEL="res://Conway`s-game-of-life-tilemap/global-varabels.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
+
 [display]
 
 window/size/viewport_width=900
