@@ -57,4 +57,4 @@ func _on_container_get_data_from_haupt_control(key: String) -> void:
 	send_data(key)
 	
 func get_output_data():
-	return get_node("HBoxContainer/Container/Node2D").get_new_y_point()
+	return get_node("HBoxContainer/Container/Node2D").get_new_y_point_and_num_points()

@@ -128,9 +128,10 @@ func _calculate_wave_points() -> PackedVector2Array:
 		result_points.append(point + Vector2(margin.x, 0))
 	return result_points
 
-func get_new_y_point()-> float:
+func get_new_y_point_and_num_points()-> Array:
 	#print("punkt_der_gesendet_wird ",punkt_der_gesendet_wird)
-	return punkt_der_gesendet_wird
+	#print("num points ", points_for_line.size())
+	return [punkt_der_gesendet_wird, points_for_line.size()]
 	
 func anpassung_der_wellen_punkte()-> void:
 	var center_y = canvas_size.y / 2.0
