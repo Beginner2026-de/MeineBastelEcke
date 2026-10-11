@@ -5,7 +5,7 @@ extends Button
 
 
 func _on_pressed() -> void:
-	var MY_GRAPH_NODE_SCENE: Resource = preload("uid://cf30euwej1mvm")
+	var MY_GRAPH_NODE_SCENE: Resource = preload("uid://bnhs5i3v1bf0w")
 	# 1. Instanz der vorbereiteten Szene erstellen
 	
 	var node: GraphNode = MY_GRAPH_NODE_SCENE.instantiate() as GraphNode

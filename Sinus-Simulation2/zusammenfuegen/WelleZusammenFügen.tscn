@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cypx130nkc2j7"]
 
-[ext_resource type="Script" uid="uid://d0gblgl1yi455" path="res://Sinus-Simulation2/nodes/WelleZusammenFügen.gd" id="1_icxj3"]
-[ext_resource type="Script" uid="uid://c70ygujtkuvn7" path="res://Sinus-Simulation2/nodes/WelleZusammenfügenLine2d.gd" id="3_fdwow"]
+[ext_resource type="Script" uid="uid://d0gblgl1yi455" path="res://Sinus-Simulation2/zusammenfuegen/WelleZusammenFügen.gd" id="1_icxj3"]
+[ext_resource type="Script" uid="uid://c70ygujtkuvn7" path="res://Sinus-Simulation2/zusammenfuegen/WelleZusammenfügenLine2d.gd" id="3_fdwow"]
 
 [node name="WelleZusammenFügen" type="GraphNode" unique_id=1104531108]
-anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

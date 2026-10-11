@@ -30,7 +30,7 @@ func transfer_data(from_node_name: StringName, _from_port: int, to_node_name: St
 	var target_node: Node = get_node(NodePath(to_node_name))
 	
 	# 1. Daten vom Quell-Node abrufen
-	var output_data: float = source_node.get_output_data()
+	var output_data: Array = source_node.get_output_data()
 	
 	# 2. Daten an den Ziel-Node übergeben und dort verarbeiten
 	target_node.receive_input_data(to_port, output_data)
