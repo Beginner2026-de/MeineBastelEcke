@@ -1,16 +1,16 @@
 extends Node
 #generel 
-func get_num_points():
-	var num_points  := 465
+func get_num_points()->int:
+	var num_points  : int = 465
 	return num_points
-func get_abstand():
-	var abstand := 0.5
+func get_abstand()->float:
+	var abstand : float = 0.5
 	return abstand
-func get_geschwindigkeit():
-	var geschwindigkeit := 2
+func get_geschwindigkeit()->int:
+	var geschwindigkeit : int = 2
 	return geschwindigkeit
-func get_simulatoin_anhalten():
-	var simulatoin_anhalten := 0
+func get_simulatoin_anhalten()-> int:
+	var simulatoin_anhalten : int = 0
 	return simulatoin_anhalten
 
 var global_time: float = 0.0

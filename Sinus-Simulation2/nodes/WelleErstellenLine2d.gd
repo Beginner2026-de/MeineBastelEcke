@@ -12,32 +12,32 @@ var frequency: float = 20
 var offset_x: float = 0.0
 var offset_y: float = 0.0
 
-var bewegungs_geschwindigkeit
+var bewegungs_geschwindigkeit: float
 
 func _ready() -> void:
 	clear_points()
 	start_line()
-	var manager = SinusWellen # Oder über Pfad / Gruppe suchen
+	var manager:Node = SinusWellen # Oder über Pfad / Gruppe suchen
 	if manager and manager.has_signal("set_new_point_wellen_ersteller"):
 		manager.set_new_point_wellen_ersteller.connect(_set_new_point_wellen_ersteller)
 
-func start_line():
-	for i in range(num_points):
+func start_line() -> void:
+	for i: int in range(num_points):
 		add_point(Vector2(i * abstand, 0))
-var new_point
 
+var new_point : float
 func _set_new_point_wellen_ersteller(gloabal_time: float) -> void:
 	bewegungs_geschwindigkeit = gloabal_time
 	# Punkte nach links verschieben
-	for i in range(num_points - 1):
-		var next_pos = get_point_position(i + 1)
+	for i: int in range(num_points - 1):
+		var next_pos: Vector2 = get_point_position(i + 1)
 		set_point_position(i, Vector2(next_pos.x - abstand, next_pos.y))
 	
 	# NEU: Verwendet die LOKALEN Variablen statt SinusWellen.*
 	new_point = amplitude * sin(frequency * bewegungs_geschwindigkeit + offset_x) + offset_y
 	set_point_position(num_points - 1, Vector2((num_points - 1) * abstand, new_point))
 
-func get_new_point():
+func get_new_point() -> float:
 	return new_point
 	
 	

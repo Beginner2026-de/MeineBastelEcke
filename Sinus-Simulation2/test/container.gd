@@ -16,15 +16,15 @@ func _ready() -> void:
 # Berechnet die Mindestgröße für den Parent-GraphNode/HBoxContainer
 func aktualisiere_fenster_groesse() -> void:
 	# 1. Benötigte Höhe: 2x Amplitude (oben + unten Peak) + Ränder
-	var min_height = int((amplitude * 2.0) + (margin.y * 2.0))
-	var min_width = int((num_points * visible_cycles) + (margin.x * 3.0))
+	var min_height: int = int((amplitude * 2.0) + (margin.y * 2.0))
+	var min_width: int = int((num_points * visible_cycles) + (margin.x * 3.0))
 	
 	# Den Container anweisen, sich mindestens so groß zu machen
 	custom_minimum_size = (Vector2(min_width,min_height))
 	size = custom_maximum_size
 	
 		# 2. Den übergeordneten Node suchen
-	var parent = get_parent()
+	var parent: Node = get_parent()
 	
 	# SCHLEIFE: Wir suchen nach oben, ob dieses Element in einem GraphNode steckt
 	while parent != null:

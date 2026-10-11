@@ -12,7 +12,7 @@ class NodeData:
 # Instanz der Datenklasse erzeugen
 var local_data: NodeData = NodeData.new()
 func _ready() -> void:
-	for inhalt in local_data.get_property_list():
+	for inhalt : Dictionary in local_data.get_property_list():
 		if inhalt.usage &  PROPERTY_USAGE_SCRIPT_VARIABLE:
 			var key: String = inhalt.name
 			var value: Variant = local_data.get(key)
@@ -29,8 +29,8 @@ func set_data(key: String, value: Variant) -> void:
 	else:
 		push_error("Variable '" + key + "' existiert nicht in NodeData!")
 
-func send_data(key: String):
-	for inhalt in local_data.get_property_list():
+func send_data(key: String) -> void:
+	for inhalt : Dictionary in local_data.get_property_list():
 		if inhalt.usage &  PROPERTY_USAGE_SCRIPT_VARIABLE:
 			if inhalt.name == key:
 				var value: Variant = local_data.get(key)
@@ -45,7 +45,6 @@ func _on_amp_eingabe_1_text_changed(new_text: String) -> void:
 
 
 func _on_n_zklen_text_changed(new_text: String) -> void:
-	var float_text: float = new_text.to_float()
 	#print(type_string(typeof(float_text)))
 	set_data("visible_cycles", float(new_text))
 
@@ -56,5 +55,5 @@ func _on_node_2d_get_data_from_haupt_control(key: String) -> void:
 func _on_container_get_data_from_haupt_control(key: String) -> void:
 	send_data(key)
 	
-func get_output_data():
+func get_output_data() -> Array:
 	return get_node("HBoxContainer/Container/Node2D").get_new_y_point_and_num_points()
