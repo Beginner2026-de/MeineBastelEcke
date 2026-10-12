@@ -1,6 +1,6 @@
 extends Node
 
-func GetColorForThemesByIndex(index : int):
+func GetColorForThemesByIndex(index : int) -> void:
 	print("Index theme: ", index)
 	# --- ERWEITERTE FARBPALETTE ---
 	# Hintergründe
@@ -77,29 +77,29 @@ func GetColorForThemesByIndex(index : int):
 						button_content_margins)
 
 
-func apply_colors_to_theme(color_bg_dark,
-						color_bg_panel,
-						color_surface,
-						color_surface_hover,
-						color_surface_active,
-						color_accent,
-						color_border,
-						color_text_primary,
-						color_text_secondary,
-						button_content_margins,
-						my_theme=load("res://UI/standard.tres")) -> void:
+func apply_colors_to_theme(color_bg_dark: Color,
+						color_bg_panel: Color,
+						color_surface: Color,
+						color_surface_hover: Color,
+						color_surface_active: Color,
+						color_accent: Color,
+						color_border: Color,
+						color_text_primary: Color,
+						color_text_secondary: Color,
+						button_content_margins: float,
+						my_theme:  Resource=load("res://UI/standard.tres")) -> void:
 							
 	RenderingServer.set_default_clear_color(color_bg_dark)
 	# --- 1. BUTTONS (Button, OptionButton, MenuButton) ---
-	var button_types = ["Button", "OptionButton", "MenuButton"]
-	for b_type in button_types:
+	var button_types: PackedStringArray = ["Button", "OptionButton", "MenuButton"]
+	for b_type: String in button_types:
 		my_theme.set_color("font_color", b_type, color_text_primary)
 		my_theme.set_color("font_hover_color", b_type, color_text_primary)
 		my_theme.set_color("font_pressed_color", b_type, color_text_primary)
 		my_theme.set_color("font_focus_color", b_type, color_text_primary)
 		
 		# Normal
-		var btn_normal = StyleBoxFlat.new()
+		var btn_normal: StyleBoxFlat = StyleBoxFlat.new()
 		btn_normal.bg_color = color_surface
 		btn_normal.border_color = color_border
 		btn_normal.border_width_bottom = 2
@@ -107,14 +107,14 @@ func apply_colors_to_theme(color_bg_dark,
 		btn_normal.set_content_margin(SIDE_LEFT, button_content_margins)
 		btn_normal.set_content_margin(SIDE_RIGHT, button_content_margins)
 		# Hover
-		var btn_hover = StyleBoxFlat.new()
+		var btn_hover: StyleBoxFlat = StyleBoxFlat.new()
 		btn_hover.bg_color = color_surface_hover
 		btn_hover.border_color = color_accent
 		btn_hover.border_width_bottom = 2
 		btn_hover.set_corner_radius_all(4)
 
 		# Pressed
-		var btn_pressed = StyleBoxFlat.new()
+		var btn_pressed: StyleBoxFlat = StyleBoxFlat.new()
 		btn_pressed.bg_color = color_surface_active
 		btn_pressed.set_corner_radius_all(4)
 
@@ -124,7 +124,7 @@ func apply_colors_to_theme(color_bg_dark,
 		my_theme.set_stylebox("focus", b_type, btn_hover)
 
 	# --- 2. PANELS & HINTERGRÜNDE ---
-	var panel_bg = StyleBoxFlat.new()
+	var panel_bg: StyleBoxFlat = StyleBoxFlat.new()
 	panel_bg.bg_color = color_bg_panel
 	panel_bg.border_color = color_border
 	panel_bg.set_border_width_all(1)
@@ -137,13 +137,13 @@ func apply_colors_to_theme(color_bg_dark,
 	my_theme.set_color("font_selected_color", "TabContainer", color_text_primary)
 	my_theme.set_color("font_unselected_color", "TabContainer", color_text_secondary)
 	
-	var tab_sel = StyleBoxFlat.new()
+	var tab_sel: StyleBoxFlat = StyleBoxFlat.new()
 	tab_sel.bg_color = color_bg_panel
 	tab_sel.border_color = color_accent
 	tab_sel.border_width_top = 3
 	tab_sel.set_corner_radius_all(4)
 
-	var tab_unsel = StyleBoxFlat.new()
+	var tab_unsel: StyleBoxFlat = StyleBoxFlat.new()
 	tab_unsel.bg_color = color_bg_dark
 	tab_unsel.set_corner_radius_all(4)
 
@@ -152,12 +152,12 @@ func apply_colors_to_theme(color_bg_dark,
 	my_theme.set_stylebox("panel", "TabContainer", panel_bg)
 
 	# --- 4. SLIDER (HSlider / VSlider) ---
-	for s_type in ["HSlider", "VSlider"]:
-		var slider_rail = StyleBoxFlat.new()
+	for s_type: String in ["HSlider", "VSlider"]:
+		var slider_rail: StyleBoxFlat = StyleBoxFlat.new()
 		slider_rail.bg_color = color_surface
 		slider_rail.set_corner_radius_all(2)
 
-		var slider_grabber = StyleBoxFlat.new()
+		var slider_grabber: StyleBoxFlat = StyleBoxFlat.new()
 		slider_grabber.bg_color = color_accent
 		slider_grabber.set_corner_radius_all(6)
 
@@ -166,18 +166,18 @@ func apply_colors_to_theme(color_bg_dark,
 		my_theme.set_stylebox("grabber_area_highlight", s_type, slider_grabber)
 
 	# --- 5. TEXT-EINGABEFELDER & LABELS ---
-	var input_types = ["LineEdit", "TextEdit", "CodeEdit"]
-	for i_type in input_types:
+	var input_types: PackedStringArray = ["LineEdit", "TextEdit", "CodeEdit"]
+	for i_type: String in input_types:
 		my_theme.set_color("font_color", i_type, color_text_primary)
 		my_theme.set_color("font_placeholder_color", i_type, color_text_secondary)
 		
-		var input_style = StyleBoxFlat.new()
+		var input_style: StyleBoxFlat = StyleBoxFlat.new()
 		input_style.bg_color = color_bg_dark
 		input_style.border_color = color_border
 		input_style.set_border_width_all(1)
 		input_style.set_corner_radius_all(4)
 		
-		var input_focus = input_style.duplicate()
+		var input_focus: StyleBoxFlat = input_style.duplicate()
 		input_focus.border_color = color_accent
 		
 		my_theme.set_stylebox("normal", i_type, input_style)
