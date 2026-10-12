@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://446xf1fcgwwa"]
 
-[ext_resource type="Script" path="res://Sinus-Simulation2/hauptgraph.gd" id="1_87p4b"]
-[ext_resource type="Script" path="res://Sinus-Simulation2/back_button.gd" id="2_8rmm2"]
-[ext_resource type="Script" path="res://Sinus-Simulation2/welle_zusammen_fügen.gd" id="4_oh2rd"]
-[ext_resource type="Script" path="res://Sinus-Simulation2/button.gd" id="5_757h7"]
+[ext_resource type="Script" uid="uid://c8qmiapkr5gim" path="res://Sinus-Simulation2/grapfedit/hauptgraph.gd" id="1_oh2rd"]
+[ext_resource type="Script" uid="uid://pla0w14kyeln" path="res://Sinus-Simulation2/grapfedit/back_button.gd" id="2_oh2rd"]
+[ext_resource type="Script" uid="uid://cke521awpuody" path="res://Sinus-Simulation2/grapfedit/welle_erstellen-button.gd" id="3_oh2rd"]
+[ext_resource type="Script" uid="uid://bqertj7gcmryp" path="res://Sinus-Simulation2/grapfedit/welle_zusammen_fügen.gd" id="4_oh2rd"]
 
 [node name="SinusSimulation2" type="Control" unique_id=303640558]
 layout_mode = 3
@@ -25,7 +25,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 snapping_distance = 50
 right_disconnects = true
-script = ExtResource("1_87p4b")
+script = ExtResource("1_oh2rd")
 
 [node name="MarginContainer" type="MarginContainer" parent="GraphEdit" unique_id=1521231532]
 layout_mode = 1
@@ -43,7 +43,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Back-Button" type="Button" parent="GraphEdit/MarginContainer" unique_id=978346258]
 layout_mode = 2
 text = "Back"
-script = ExtResource("2_8rmm2")
+script = ExtResource("2_oh2rd")
 
 [node name="SideBar" type="HBoxContainer" parent="GraphEdit" unique_id=728344562]
 layout_mode = 1
@@ -66,7 +66,7 @@ layout_mode = 2
 [node name="Welle Erstellen" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container" unique_id=709072674]
 layout_mode = 2
 text = "Welle Erstellen"
-script = ExtResource("5_757h7")
+script = ExtResource("3_oh2rd")
 
 [node name="Welle-zusammen-fügen" type="Button" parent="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container" unique_id=655159260]
 layout_mode = 2
