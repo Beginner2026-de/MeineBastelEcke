@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://bnhs5i3v1bf0w"]
+[gd_scene format=3 uid="uid://446xf1fcgwwa"]
 
-[ext_resource type="Script" uid="uid://c8qmiapkr5gim" path="res://Sinus-Simulation2/hauptgraph.gd" id="1_87p4b"]
-[ext_resource type="Script" uid="uid://pla0w14kyeln" path="res://Sinus-Simulation2/back_button.gd" id="2_8rmm2"]
-[ext_resource type="Script" uid="uid://bqertj7gcmryp" path="res://Sinus-Simulation2/welle_zusammen_fügen.gd" id="4_oh2rd"]
-[ext_resource type="Script" uid="uid://uklmnleqqrnp" path="res://Sinus-Simulation2/button.gd" id="5_757h7"]
+[ext_resource type="Script" path="res://Sinus-Simulation2/hauptgraph.gd" id="1_87p4b"]
+[ext_resource type="Script" path="res://Sinus-Simulation2/back_button.gd" id="2_8rmm2"]
+[ext_resource type="Script" path="res://Sinus-Simulation2/welle_zusammen_fügen.gd" id="4_oh2rd"]
+[ext_resource type="Script" path="res://Sinus-Simulation2/button.gd" id="5_757h7"]
 
 [node name="SinusSimulation2" type="Control" unique_id=303640558]
 layout_mode = 3

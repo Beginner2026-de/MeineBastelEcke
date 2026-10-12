@@ -53,10 +53,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Sinus Wellen Simulation 2"
 
-[node name="Conways-game-of-life-tilemap" type="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/GridContainer" unique_id=154624828]
-layout_mode = 2
-text = "Conway's Game of Life Slow/Small"
-
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer" unique_id=1788209051]
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -79,6 +75,5 @@ text = "Exit"
 script = ExtResource("2_m1wvj")
 
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Sinus Wellen Simulation 2" to="." method="_on_sinus_wellen_simulation_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/ScrollContainer/MarginContainer/GridContainer/Conways-game-of-life-tilemap" to="." method="_on_conwaysgameoflifetilemap_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/go-to-settings-Button" to="." method="_on_gotosettings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer2/HBoxContainer/Exit-Game" to="VBoxContainer/MarginContainer2/HBoxContainer/Exit-Game" method="_on_pressed"]
