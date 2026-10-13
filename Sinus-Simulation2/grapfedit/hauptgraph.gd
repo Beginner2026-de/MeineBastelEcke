@@ -4,13 +4,26 @@ extends GraphEdit
 var node_outputs: Dictionary = {}
 var Liste_der_verbundenen_nodes_paare: Array = []
 
+#Signal um alle wellen ersteller ein neuen punkt zu erzeugen
+signal set_new_point_wellen_ersteller(current_time:float)
+
+#Signal um alle wellen zusammen füger ein neuen punkt zu erzeugen
+signal set_new_point_wellen_zusammen_steller()
+var global_time: float = 0.0
+var geschwindigkeit: float = 1
+
+
 
 func _ready() -> void:
 	# Signale verbinden, um Verbindungen zu verwalten
 	connection_request.connect(_on_connection_request)
 	disconnection_request.connect(_on_disconnection_request)
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	global_time += delta * geschwindigkeit
+	set_new_point_wellen_ersteller.emit(global_time)
+	set_new_point_wellen_zusammen_steller.emit()
+
 			
 	for i: Array in Liste_der_verbundenen_nodes_paare:		
 		transfer_data(i[0], i[1], i[2], i[3])

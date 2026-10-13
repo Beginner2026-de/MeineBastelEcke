@@ -24,6 +24,13 @@ var border_color: Color = Color(0.4, 0.6, 1.0)
 var line_color: Color = Color(0.2, 0.9, 0.4)
 var center_line_color: Color = Color(0.3, 0.3, 0.4)
 
+
+@onready var manager: GraphEdit = get_node("/root/SinusSimulation2/GraphEdit")
+	
+func _ready() -> void:
+	if manager and manager.has_signal("set_new_point_wellen_ersteller"):
+		manager.set_new_point_wellen_ersteller.connect(setup_redraw)
+		
 func _on_data_node_data_changed(key: String, value: Variant) -> void:
 	#print("Einkommende Daten= Variabel ",key ," Wert ", value)
 	if key == "frequency":
@@ -37,12 +44,6 @@ func _on_data_node_data_changed(key: String, value: Variant) -> void:
 		visible_cycles = value
 		anpassung_der_wellen_punkte()
 		
-
-func _ready() -> void:
-	var manager: Node = SinusWellen # Oder über Pfad / Gruppe suchen
-	if manager and manager.has_signal("set_new_point_wellen_ersteller"):
-		manager.set_new_point_wellen_ersteller.connect(setup_redraw)
-
 	
 func start_line() -> void:
 	points_for_line.clear()
@@ -98,9 +99,10 @@ func _draw_center_line() -> void:
 
 func _draw_wave() -> void:
 	var points: PackedVector2Array = _calculate_wave_points()
-	
+	#print(points)
 	if points.size() > 1:
 		draw_polyline(points, line_color, 2.5, true)
+		
 var punkt_der_gesendet_wird:float
 func _calculate_wave_points() -> PackedVector2Array:
 	var result_points: Array = PackedVector2Array()

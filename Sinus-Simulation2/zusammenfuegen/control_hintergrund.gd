@@ -1,15 +1,14 @@
 extends Control
-@onready var linie: Line2D = %"WellezusammenFügen"
 var margin: Vector2 = Vector2(10, 10)
 
-func send_data(points: int, amplitude: float) -> void:
+func resive_data(points: int, amplitude: float) -> void:
 	add_float_ponit_to_list(amplitude)
 	aktualisiere_fenster_groesse(points)
 
 var liste_der_letzten_400_amplituden_punkte: Array
 func add_float_ponit_to_list(new_float_point:float) -> void:
 	var länge_der_liste: int = liste_der_letzten_400_amplituden_punkte.size()
-	if länge_der_liste >= 400:
+	if länge_der_liste >= 600:
 		liste_der_letzten_400_amplituden_punkte.remove_at(0)
 		liste_der_letzten_400_amplituden_punkte.append(new_float_point)
 	else:

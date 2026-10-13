@@ -22,7 +22,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 ThemeManager="*uid://ijj2046pa6vk"
-SinusWellen="*res://Sinus-Simulation2/Sinus-Wellen-Simulaton.gd"
 
 [debug]
 
