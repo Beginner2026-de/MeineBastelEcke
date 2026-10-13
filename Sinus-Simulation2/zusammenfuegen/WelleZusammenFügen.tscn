@@ -17,7 +17,7 @@ offset_bottom = 70.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 0
 title = "Welle zusammen fügen"
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -41,9 +41,12 @@ script = ExtResource("1_icxj3")
 
 [node name="Control für signal 1" type="Control" parent="." unique_id=249669739]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 script = ExtResource("2_01typ")
 
 [node name="Control für signal 2" type="Control" parent="." unique_id=1821085495]
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 10
 script = ExtResource("3_fdwow")

@@ -34,15 +34,16 @@ func resive_data(data: Array) ->void:
 	num_points = data[1]
 	new_point_y = data[0]
 	add_float_ponit_to_list(new_point_y)
+	_update_canvas_size()
 	queue_redraw()
 
 # --- HAUPT-ZEICHENMETHODE ---
 func _draw() -> void:
-	# SICHERHEITS-CHECK: Zeichne nur, wenn alle Farbobjekte gültige Color-Instanzen sind
+	# SICHERHEITS-CHECK
 	if not _are_colors_valid():
 		return
 		
-	_update_canvas_size()
+	# Wir zeichnen den Hintergrund basierend auf der tatsächlichen Größe des Controls
 	_draw_background_and_border()
 	_draw_center_line()
 	_draw_wave()
@@ -58,57 +59,46 @@ func _are_colors_valid() -> bool:
 # --- HILFSFUNKTIONEN ---
 
 func _draw_background_and_border() -> void:
-	var rect: Rect2 = Rect2(Vector2.ZERO, canvas_size)
+	var rect: Rect2 = Rect2(Vector2.ZERO, size)
 	draw_rect(rect, background_color, true)
 	draw_rect(rect, border_color, false, 2.0)
 
 
 func _draw_center_line() -> void:
-	var center_y: float = canvas_size.y / 2.0
-	var start_point: Vector2 = Vector2(margin.x, center_y)
-	var end_point: Vector2 = Vector2(canvas_size.x - margin.x, center_y)
-	
-	draw_line(start_point, end_point, center_line_color, 1.0)
+	var center_y: float = size.y / 2.0
+	# Mittellinie über die gesamte Breite ziehen
+	draw_line(Vector2(0, center_y), Vector2(size.x, center_y), center_line_color, 1.0)
 
 
 func _draw_wave() -> void:
-	if num_points != 0:
+	if num_points != 0 and points_for_line.size() > 0:
 		var points_to_draw: PackedVector2Array = _calculate_wave_points()
 	
-		if points_to_draw.size() >= 0:
-			#print(points_to_draw)
+		if points_to_draw.size() > 1:
 			draw_polyline(points_to_draw, line_color, 2.5, true)
 		
 func _calculate_wave_points() -> PackedVector2Array:
-	var result_points: Array = PackedVector2Array()
+	var result_points: PackedVector2Array = PackedVector2Array()
 
-	# Fallback, falls das Array noch nicht initialisiert wurde
-	#if points_for_line.is_empty():
-	#	return result_points
 	if num_points != points_for_line.size():
 		anpassung_der_wellen_punkte()
 		
-	# 1. Alle vorhandenen y-Werte um eine Position nach links verschieben
-	# Wir überschreiben Index i mit dem Wert von Index i + 1
 	for i: int in range(points_for_line.size() - 1):
 		points_for_line[i].y = points_for_line[i + 1].y
 	
-	# 2. Den NEUEN Sinus-Wert für den ganz rechten Punkt berechnen
-	# ACHTUNG: new_point muss ein Vector2 sein, nicht nur ein float!
-	#print(points_for_line.size())
 	var last_index: int = points_for_line.size() - 1
-	var last_x: float = points_for_line[last_index].x
+	points_for_line[last_index].y = new_point_y
 	
-	points_for_line[last_index] = Vector2(last_x, new_point_y)
-	# 3. Das erstelle Array in ein PackedVector2Array umwandeln und mit Rand/Margin versehen
+	var center_y: float = size.y / 2.0
+	
 	for point: Vector2 in points_for_line:
-		result_points.append(point + Vector2(margin.x, 0))
+		# Wir nutzen margin.x als Offset von links
+		# center_y - point.y sorgt dafür, dass die Welle um die Mitte schwingt
+		result_points.append(Vector2(point.x + margin.x, center_y - point.y))
 	return result_points
 
 	
 func anpassung_der_wellen_punkte() -> void:
-	var center_y: float = canvas_size.y / 2.0
-		
 	var neu_punkte_anzahl: int = num_points
 	var aktuelle_punkte_anzahl: int = points_for_line.size()
 	while aktuelle_punkte_anzahl != neu_punkte_anzahl:
@@ -116,7 +106,8 @@ func anpassung_der_wellen_punkte() -> void:
 			points_for_line.pop_at(0)
 			aktuelle_punkte_anzahl -= 1
 		elif aktuelle_punkte_anzahl < neu_punkte_anzahl:
-			points_for_line.append(Vector2(aktuelle_punkte_anzahl * abstand, center_y))
+			# Initialisiere mit 0.0 als Offset von der Mittellinie
+			points_for_line.append(Vector2(aktuelle_punkte_anzahl * abstand, 0.0))
 			aktuelle_punkte_anzahl += 1
 			
 	for i: int in range(points_for_line.size()):
@@ -135,11 +126,22 @@ func add_float_ponit_to_list(new_float_point:float) -> void:
 
 
 func _update_canvas_size() -> void:
-	var width_of_canvas: float = (num_points) + (margin.x * 2)
-	var height: float = (liste_der_letzten_400_amplituden_punkte.max() * 2.0) + (margin.y * 2)
+	var max_amplitude: float = 0.0
+	for val in liste_der_letzten_400_amplituden_punkte:
+		max_amplitude = max(max_amplitude, abs(val))
+	
+	var width_of_canvas: float = (num_points * abstand) + (margin.x * 2)
+	var height: float = (max_amplitude * 2.0) + (margin.y * 2)
+	
+	# Mindesthöhe
+	height = max(height, 40.0)
 
 	_is_updating_size = true
-	canvas_size = Vector2(width_of_canvas, height)
-	# Wichtig für Controls im GraphNode:
-	custom_minimum_size = canvas_size 
+	var new_size = Vector2(width_of_canvas, height)
+	if custom_minimum_size != new_size:
+		custom_minimum_size = new_size
+		# Optional: GraphNode zum Schrumpfen zwingen
+		var parent = get_parent()
+		if parent is GraphNode:
+			parent.size = Vector2.ZERO
 	_is_updating_size = false

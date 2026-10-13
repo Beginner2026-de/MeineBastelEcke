@@ -18,15 +18,11 @@ func add_float_ponit_to_list(new_float_point:float) -> void:
 	
 # Berechnet die Mindestgröße für den Parent-GraphNode/HBoxContainer
 func aktualisiere_fenster_groesse(points: int) -> void:
-	# 1. Benötigte Höhe: 2x Amplitude (oben + unten Peak) + Ränder
-	var min_height: int = int(((liste_der_letzten_400_amplituden_punkte.max() * 2)) )
-	var min_width: int = int((points) + (margin.x * 3.0))
+	# Wir setzen die Mindestgröße auf Null, damit dieses Hilfs-Control 
+	# keinen Platz im GraphNode wegnimmt und die Wellenanzeige nicht nach unten schiebt.
+	custom_minimum_size = Vector2.ZERO
 	
-	# Den Container anweisen, sich mindestens so groß zu machen
-	custom_minimum_size = (Vector2(min_width,min_height))
-	size = custom_maximum_size
-	
-		# 2. Den übergeordneten Node suchen
+	# Den übergeordneten Node suchen
 	var parent: Node = get_parent()
 	
 	# SCHLEIFE: Wir suchen nach oben, ob dieses Element in einem GraphNode steckt
