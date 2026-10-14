@@ -1,4 +1,7 @@
 extends Control
+@onready var manager: GraphEdit = get_node("/root/SinusSimulation2/GraphEdit")
+@onready var graphnode: GraphNode = get_parent() as GraphNode
+
 #Für die Linien berechnung
 var global_time: float = 0.0
 var points_for_line: Array  = []
@@ -20,6 +23,8 @@ var center_line_color: Color = Color(0.3, 0.3, 0.4)
 
 func _ready() -> void:
 	start_line()
+	if manager and manager.has_signal("set_new_point_wellen_zusammen_steller"):
+		manager.set_new_point_wellen_zusammen_steller.connect(draw_new_point)
 	
 func start_line() -> void:
 	points_for_line.clear()
@@ -29,13 +34,15 @@ func start_line() -> void:
 		# Initialisiere jeden Punkt als Vector2 auf der Nulllinie (center_y)
 		points_for_line.append(Vector2(i * abstand, center_y))
 
-
-func resive_data(data: Array) ->void:
+func draw_new_point() -> void:
+	var data: Array = graphnode.get_output_data()
 	num_points = data[1]
 	new_point_y = data[0]
 	add_float_ponit_to_list(new_point_y)
 	_update_canvas_size()
 	queue_redraw()
+
+
 
 # --- HAUPT-ZEICHENMETHODE ---
 func _draw() -> void:
@@ -115,33 +122,37 @@ func anpassung_der_wellen_punkte() -> void:
 			
 
 
-var liste_der_letzten_400_amplituden_punkte: Array = [0]
+var liste_der_letzten_600_amplituden_punkte: Array = [0]
 func add_float_ponit_to_list(new_float_point:float) -> void:
-	var länge_der_liste: int = liste_der_letzten_400_amplituden_punkte.size()
+	var länge_der_liste: int = liste_der_letzten_600_amplituden_punkte.size()
 	if länge_der_liste >= 600:
-		liste_der_letzten_400_amplituden_punkte.remove_at(0)
-		liste_der_letzten_400_amplituden_punkte.append(new_float_point)
+		liste_der_letzten_600_amplituden_punkte.remove_at(0)
+		liste_der_letzten_600_amplituden_punkte.append(new_float_point)
 	else:
-		liste_der_letzten_400_amplituden_punkte.append(new_float_point)
+		liste_der_letzten_600_amplituden_punkte.append(new_float_point)
 
 
 func _update_canvas_size() -> void:
-	var max_amplitude: float = 0.0
-	for val in liste_der_letzten_400_amplituden_punkte:
-		max_amplitude = max(max_amplitude, abs(val))
+	
+	var max_amplitude: float = liste_der_letzten_600_amplituden_punkte.max()
 	
 	var width_of_canvas: float = (num_points * abstand) + (margin.x * 2)
 	var height: float = (max_amplitude * 2.0) + (margin.y * 2)
 	
 	# Mindesthöhe
-	height = max(height, 40.0)
+	#height = max(height, 40.0)
 
 	_is_updating_size = true
-	var new_size = Vector2(width_of_canvas, height)
-	if custom_minimum_size != new_size:
-		custom_minimum_size = new_size
-		# Optional: GraphNode zum Schrumpfen zwingen
-		var parent = get_parent()
-		if parent is GraphNode:
-			parent.size = Vector2.ZERO
+	canvas_size = Vector2(width_of_canvas, height)
+
+	if custom_minimum_size != canvas_size:
+		custom_minimum_size = canvas_size
+		# Den GraphNode zum Schrumpfen zwingen
+		var parent: Node = get_parent()
+		while parent != null:
+			if parent is GraphNode:
+				parent.size = Vector2.ZERO
+				break
+			parent = parent.get_parent()
 	_is_updating_size = false
+	return
