@@ -1,7 +1,6 @@
 extends GraphEdit
 
 # Ein Verzeichnis, das speichert, welches Node-Skript welches Ergebnis liefert
-var node_outputs: Dictionary = {}
 var Liste_der_verbundenen_nodes_paare: Array = []
 
 #Signal um alle wellen ersteller ein neuen punkt zu erzeugen

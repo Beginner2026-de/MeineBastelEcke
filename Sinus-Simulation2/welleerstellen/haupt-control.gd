@@ -3,6 +3,11 @@ class_name DataNode
 
 signal data_changed(key: String, value: Variant)
 
+
+func _on_node_löschen_button_pressed() -> void:
+	queue_free()
+
+
 class NodeData:
 	var frequency: float = 2.0
 	var amplitude: float = 50.0
@@ -57,3 +62,4 @@ func _on_container_get_data_from_haupt_control(key: String) -> void:
 	
 func get_output_data() -> Array:
 	return get_node("HBoxContainer/Container/Node2D").get_new_y_point_and_num_points()
+	
