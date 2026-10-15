@@ -36,7 +36,7 @@ func get_output_data() -> Array:
 
 	var get_highest_canvas_size: Array = [canvas_size_from_ersteller[0][0]+canvas_size_from_ersteller[1][0],canvas_size_from_ersteller[0][1]+canvas_size_from_ersteller[1][1]]
 	list_for_all_data.fill(0.0)
-	print("Großes Canvas ", get_highest_canvas_size, "Eerste Port Canvas ", canvas_size_from_ersteller[0], "Zweite Port Canvas ", canvas_size_from_ersteller[1])
+	#print("Großes Canvas ", get_highest_canvas_size, "Eerste Port Canvas ", canvas_size_from_ersteller[0], "Zweite Port Canvas ", canvas_size_from_ersteller[1])
 	return [summed_amplitude, highest_num_points, get_highest_canvas_size]
 
 func _on_node_löschen_pressed() -> void:
