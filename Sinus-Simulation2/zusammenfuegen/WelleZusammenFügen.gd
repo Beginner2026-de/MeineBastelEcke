@@ -30,3 +30,6 @@ func get_output_data() -> Array:
 	var highest_num_points: int = max(list_for_all_num_points[0], list_for_all_num_points[1])
 	list_for_all_data.fill(0.0)
 	return [summed_amplitude, highest_num_points]
+
+func _on_node_löschen_pressed() -> void:
+	queue_free()

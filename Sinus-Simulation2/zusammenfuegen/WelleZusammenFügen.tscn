@@ -45,6 +45,15 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
+slot/3/left_enabled = false
+slot/3/left_type = 0
+slot/3/left_color = Color(1, 1, 1, 1)
+slot/3/left_icon = null
+slot/3/right_enabled = false
+slot/3/right_type = 0
+slot/3/right_color = Color(1, 1, 1, 1)
+slot/3/right_icon = null
+slot/3/draw_stylebox = true
 script = ExtResource("1_icxj3")
 
 [node name="Control für signal 1" type="Control" parent="." unique_id=249669739]
@@ -60,3 +69,17 @@ script = ExtResource("3_fdwow")
 
 [node name="Control signal 2" type="Control" parent="." unique_id=1660237656]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=618300633]
+layout_mode = 2
+
+[node name="Node löschen Label" type="Label" parent="HBoxContainer" unique_id=984548579]
+layout_mode = 2
+text = "Node"
+
+[node name="Node löschen" type="Button" parent="HBoxContainer" unique_id=662932679]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Löschen"
+
+[connection signal="pressed" from="HBoxContainer/Node löschen" to="." method="_on_node_löschen_pressed"]

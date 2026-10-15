@@ -5,6 +5,7 @@ signal data_changed(key: String, value: Variant)
 
 
 func _on_node_löschen_button_pressed() -> void:
+	
 	queue_free()
 
 

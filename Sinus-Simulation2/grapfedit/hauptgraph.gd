@@ -17,7 +17,9 @@ func _ready() -> void:
 	# Signale verbinden, um Verbindungen zu verwalten
 	connection_request.connect(_on_connection_request)
 	disconnection_request.connect(_on_disconnection_request)
-	
+	# NEU: Lauschen, wenn ein Node gelöscht wird
+	child_exiting_tree.connect(_on_child_exiting_tree)
+
 func _process(delta: float) -> void:
 	global_time += delta * geschwindigkeit
 	set_new_point_wellen_ersteller.emit(global_time)
@@ -46,3 +48,24 @@ func transfer_data(from_node_name: StringName, _from_port: int, to_node_name: St
 	
 	# 2. Daten an den Ziel-Node übergeben und dort verarbeiten
 	target_node.receive_input_data(to_port, output_data)
+
+# Diese Funktion wird automatisch aufgerufen, wenn ein Node gelöscht wird (queue_free)
+func _on_child_exiting_tree(node: Node) -> void:
+	if node is GraphNode:
+		_entferne_alle_verbindungen_fuer_node(node.name)
+
+func _entferne_alle_verbindungen_fuer_node(node_name: StringName) -> void:
+	# 1. Visuelle Linien im GraphEdit trennen
+	for conn: Dictionary in get_connection_list():
+		if conn.from_node == node_name or conn.to_node == node_name:
+			disconnect_node(conn.from_node, conn.from_port, conn.to_node, conn.to_port)
+	
+	# 2. Interne Liste 'Liste_der_verbundenen_nodes_paare' bereinigen
+	var i: int = 0
+	while i < Liste_der_verbundenen_nodes_paare.size():
+		var pair: Array = Liste_der_verbundenen_nodes_paare[i]
+		# Prüfen, ob der gelöschte Node Start- oder Endpunkt der Verbindung war
+		if pair[0] == node_name or pair[2] == node_name:
+			Liste_der_verbundenen_nodes_paare.remove_at(i)
+		else:
+			i += 1
