@@ -50,3 +50,7 @@ func _on_data_node_data_changed(key: String, value: Variant) -> void:
 		visible_cycles = float(value)
 	
 	aktualisiere_fenster_groesse()
+
+
+func _on_foldable_container_folding_changed(_is_folded: bool) -> void:
+	aktualisiere_fenster_groesse()

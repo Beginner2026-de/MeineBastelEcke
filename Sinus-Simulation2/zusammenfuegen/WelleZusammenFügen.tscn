@@ -70,16 +70,35 @@ script = ExtResource("3_fdwow")
 [node name="Control signal 2" type="Control" parent="." unique_id=1660237656]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=618300633]
+[node name="FoldableContainer" type="FoldableContainer" parent="." unique_id=226024715]
 layout_mode = 2
+size_flags_horizontal = 0
+folded = true
+title = "Optionen"
+title_alignment = 1
 
-[node name="Node löschen Label" type="Label" parent="HBoxContainer" unique_id=984548579]
+[node name="GridContainer" type="GridContainer" parent="FoldableContainer" unique_id=1705083824]
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="Node Löschen Label" type="Label" parent="FoldableContainer/GridContainer" unique_id=542726344]
 layout_mode = 2
 text = "Node"
 
-[node name="Node löschen" type="Button" parent="HBoxContainer" unique_id=662932679]
+[node name="Node Löschen button" type="Button" parent="FoldableContainer/GridContainer" unique_id=874813901]
 layout_mode = 2
-size_flags_horizontal = 4
 text = "Löschen"
 
-[connection signal="pressed" from="HBoxContainer/Node löschen" to="." method="_on_node_löschen_pressed"]
+[node name="Node umbennen" type="Label" parent="FoldableContainer/GridContainer" unique_id=86472219]
+layout_mode = 2
+text = "umbennen"
+
+[node name="Node umbenennen" type="LineEdit" parent="FoldableContainer/GridContainer" unique_id=1411012846]
+layout_mode = 2
+placeholder_text = "New Name"
+expand_to_text_length = true
+
+[connection signal="folding_changed" from="FoldableContainer" to="Control für line" method="_on_foldable_container_folding_changed"]
+[connection signal="pressed" from="FoldableContainer/GridContainer/Node Löschen button" to="." method="_on_node_löschen_button_pressed"]
+[connection signal="text_submitted" from="FoldableContainer/GridContainer/Node umbenennen" to="." method="_on_node_umbenennen_text_submitted"]

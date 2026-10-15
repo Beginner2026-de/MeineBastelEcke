@@ -9,6 +9,13 @@ func _on_node_löschen_button_pressed() -> void:
 	queue_free()
 
 
+
+
+func _on_node_umbenennen_text_submitted(new_text: String) -> void:
+	title  = new_text
+
+
+
 class NodeData:
 	var frequency: float = 2.0
 	var amplitude: float = 50.0

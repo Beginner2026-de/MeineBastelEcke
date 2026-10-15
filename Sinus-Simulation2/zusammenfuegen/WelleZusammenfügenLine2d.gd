@@ -156,3 +156,7 @@ func _update_canvas_size() -> void:
 			parent = parent.get_parent()
 	_is_updating_size = false
 	return
+
+
+func _on_foldable_container_folding_changed(_is_folded: bool) -> void:
+	queue_redraw()

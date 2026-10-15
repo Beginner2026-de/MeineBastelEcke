@@ -33,3 +33,10 @@ func get_output_data() -> Array:
 
 func _on_node_löschen_pressed() -> void:
 	queue_free()
+
+func _on_node_löschen_button_pressed() -> void:
+	queue_free()
+
+
+func _on_node_umbenennen_text_submitted(new_text: String) -> void:
+	title = new_text
