@@ -38,7 +38,7 @@ func draw_new_point() -> void:
 	var data: Array = graphnode.get_output_data()
 	num_points = data[1]
 	new_point_y = data[0]
-	add_float_ponit_to_list(new_point_y)
+	canvas_size = Vector2(data[2][0],data[2][1])
 	_update_canvas_size()
 	queue_redraw()
 
@@ -121,29 +121,9 @@ func anpassung_der_wellen_punkte() -> void:
 		points_for_line[i].x = i * abstand
 			
 
-
-var liste_der_letzten_600_amplituden_punkte: Array = [0]
-func add_float_ponit_to_list(new_float_point:float) -> void:
-	var länge_der_liste: int = liste_der_letzten_600_amplituden_punkte.size()
-	if länge_der_liste >= 600:
-		liste_der_letzten_600_amplituden_punkte.remove_at(0)
-		liste_der_letzten_600_amplituden_punkte.append(new_float_point)
-	else:
-		liste_der_letzten_600_amplituden_punkte.append(new_float_point)
-
-
 func _update_canvas_size() -> void:
-	
-	var max_amplitude: float = liste_der_letzten_600_amplituden_punkte.max()
-	
-	var width_of_canvas: float = (num_points * abstand) + (margin.x * 2)
-	var height: float = (max_amplitude * 2.0) + (margin.y * 2)
-	
-	# Mindesthöhe
-	#height = max(height, 40.0)
-
 	_is_updating_size = true
-	canvas_size = Vector2(width_of_canvas, height)
+	#canvas_size = Vector2(width_of_canvas, height)
 
 	if custom_minimum_size != canvas_size:
 		custom_minimum_size = canvas_size

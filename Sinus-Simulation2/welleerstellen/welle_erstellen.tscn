@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://d0cnitk0jleyc" path="res://Sinus-Simulation2/welleerstellen/SineWaveCanvas.gd" id="3_1nd2r"]
 
 [node name="data_node" type="GraphNode" unique_id=1768842229]
-offset_right = 223.0
-offset_bottom = 183.0
+offset_right = 241.0
+offset_bottom = 218.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 title = "Ersteller"

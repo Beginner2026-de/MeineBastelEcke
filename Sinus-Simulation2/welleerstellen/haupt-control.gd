@@ -5,7 +5,6 @@ signal data_changed(key: String, value: Variant)
 
 
 func _on_node_löschen_button_pressed() -> void:
-	
 	queue_free()
 
 
@@ -69,5 +68,4 @@ func _on_container_get_data_from_haupt_control(key: String) -> void:
 	send_data(key)
 	
 func get_output_data() -> Array:
-	return get_node("HBoxContainer/Container/Node2D").get_new_y_point_and_num_points()
-	
+	return get_node("HBoxContainer/Container/Node2D").get_new_ypoint_num_points_canvas_size()
