@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ThemeManager="*uid://ijj2046pa6vk"
+SaveManager="*uid://cg65s5vnsjh8v"
 
 [debug]
 

@@ -69,3 +69,52 @@ func _entferne_alle_verbindungen_fuer_node(node_name: StringName) -> void:
 			Liste_der_verbundenen_nodes_paare.remove_at(i)
 		else:
 			i += 1
+
+func speicher_den_grapf(Speicher_name: String) -> void:
+	const SpeicherStruckturWellen = preload("uid://q5irkds078yp")
+	var speicher: Resource  = SpeicherStruckturWellen.new()
+	
+	var node_daten_liste: Array = []
+	
+	# 1. Alle Kinder durchgehen und nur GraphNodes herausfiltern
+	for child: Node in get_children():
+		if child is GraphNode:
+			
+			# Beispiel: Wenn du im GraphNode ein Eingabefeld (LineEdit) hast, 
+			# greifst du so darauf zu (passe den Pfad an deine Node-Struktur an):
+			# var input_text = child.get_node("LineEdit").text 
+			
+			var node_info = {
+				"name": child.name,                              # Name des Nodes (wichtig zum Wiederfinden)
+				"position": child.position_offset,               # WICHTIG: position_offset statt position!
+				# "text_inhalt": input_text                      # Falls du innere Daten hast
+			}
+			node_daten_liste.append(node_info)
+	
+	# 2. Alle Verbindungen direkt von Godot holen
+	# get_connection_list() liefert automatisch ein Array voller Dictionaries mit from, from_port, to, to_port
+	var verbindungen: Array = get_connection_list()
+	
+	# 3. Alles in das zentrale Speicher-Objekt (SaveManager) schreiben
+	speicher.graph_name = Speicher_name
+	speicher.saved_nodes = node_daten_liste
+	speicher.saved_connections = verbindungen
+	var speicher_ort_name : String = "user://wellen/" + Speicher_name + ".tres"
+	var text: String = SaveManager.save_resource(speicher,speicher_ort_name)
+	print(text)
+	
+	
+func _on_speichern_pressed() -> void:
+	# 1. Szene laden (Datentyp ist PackedScene)
+	const POPUP_ZUM_SPEICHERN: PackedScene = preload("uid://cc7fyfgpo8e0f")
+	
+	# 2. Instanziieren (Erstellt den echten Node aus der Blaupause)
+	var popup_instance: Node = POPUP_ZUM_SPEICHERN.instantiate()
+	popup_instance.speicher_den_graph_mit_dem_namen.connect(speicher_den_grapf)
+	# 3. Zum aktuellen Szenenbaum hinzufügen (damit es im Spiel existiert)
+	get_tree().root.add_child(popup_instance)
+	
+	# 4. Optional: Wenn dein Pop-up ein Fenster (Window) oder ein Popup-Node ist, 
+	# kannst du es direkt zentriert auf dem Bildschirm anzeigen lassen:
+	if popup_instance is Window:
+		popup_instance.popup_centered()
