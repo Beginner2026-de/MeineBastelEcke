@@ -7,6 +7,7 @@ signal speicher_den_graph_mit_dem_namen(Namen:String)
 
 func _ready() -> void:
 	error_nachrichten.visible = false
+	line_edit.grab_focus()
 
 func _on_abrechen_pressed() -> void:
 	queue_free()

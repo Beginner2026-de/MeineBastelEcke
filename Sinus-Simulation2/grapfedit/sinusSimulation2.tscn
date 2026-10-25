@@ -30,6 +30,7 @@ connection_lines_thickness = 3.0
 minimap_enabled = false
 show_zoom_buttons = false
 script = ExtResource("1_87p4b")
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="GraphEdit" unique_id=1521231532]
 layout_mode = 1
@@ -103,6 +104,30 @@ text = "Speichern"
 [node name="Laden" type="Button" parent="GraphEdit/SaveLoadButton/HBoxContainer" unique_id=1657119175]
 layout_mode = 2
 text = "Laden"
+
+[node name="MarginContainer2" type="MarginContainer" parent="GraphEdit" unique_id=582302726]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="nachrichten" type="LineEdit" parent="GraphEdit/MarginContainer2" unique_id=2018564839]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+editable = false
+expand_to_text_length = true
+virtual_keyboard_enabled = false
 
 [connection signal="pressed" from="GraphEdit/MarginContainer/Back-Button" to="GraphEdit/MarginContainer/Back-Button" method="_on_pressed"]
 [connection signal="pressed" from="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle Erstellen" to="GraphEdit/SideBar/MarginContainer/FoldableContainer/Node Button container/Welle Erstellen" method="_on_pressed"]

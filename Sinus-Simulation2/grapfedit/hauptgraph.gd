@@ -1,4 +1,5 @@
 extends GraphEdit
+@onready var nachrichten: LineEdit = $MarginContainer2/nachrichten
 
 # Ein Verzeichnis, das speichert, welches Node-Skript welches Ergebnis liefert
 var Liste_der_verbundenen_nodes_paare: Array = []
@@ -101,9 +102,14 @@ func speicher_den_grapf(Speicher_name: String) -> void:
 	speicher.saved_connections = verbindungen
 	var speicher_ort_name : String = "user://wellen/" + Speicher_name + ".tres"
 	var text: String = SaveManager.save_resource(speicher,speicher_ort_name)
-	print(text)
+	print_nachricten(text)
 	
-	
+func print_nachricten(text: String)-> void:
+	nachrichten.visible = true
+	nachrichten.text = text
+	await get_tree().create_timer(4).timeout
+	nachrichten.visible= false
+
 func _on_speichern_pressed() -> void:
 	# 1. Szene laden (Datentyp ist PackedScene)
 	const POPUP_ZUM_SPEICHERN: PackedScene = preload("uid://cc7fyfgpo8e0f")

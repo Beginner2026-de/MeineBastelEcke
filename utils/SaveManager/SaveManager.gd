@@ -14,6 +14,6 @@ func save_resource(current_data: Resource, SAVE_PATH: String) -> String:
 	# 3. Jetzt erst die Datei speichern
 	var error: Error = ResourceSaver.save(current_data, SAVE_PATH)
 	if error == OK:
-		return "Spielstand erfolgreich gespeichert unter: " + str(SAVE_PATH)
+		return "Spielstand erfolgreich gespeichert"
 	else:
-		return "Fehler beim Speichern der Ressource: " + str(error)
+		return "Fehler beim Speichern"
