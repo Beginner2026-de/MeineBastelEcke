@@ -124,3 +124,20 @@ func _on_speichern_pressed() -> void:
 	# kannst du es direkt zentriert auf dem Bildschirm anzeigen lassen:
 	if popup_instance is Window:
 		popup_instance.popup_centered()
+
+
+func _on_laden_pressed() -> void:
+	# 1. Szene laden (Datentyp ist PackedScene)
+	const POPUP_ZUM_LADEN: PackedScene = preload("uid://detyw5cwxo3pl")
+	
+	# 2. Instanziieren (Erstellt den echten Node aus der Blaupause)
+	var popup_instance: Node = POPUP_ZUM_LADEN.instantiate()
+	#popup_instance.speicher_den_graph_mit_dem_namen.connect(speicher_den_grapf)
+	# 3. Zum aktuellen Szenenbaum hinzufügen (damit es im Spiel existiert)
+	get_tree().root.add_child(popup_instance)
+	popup_instance.speicherstände_button_laden("welle")
+	
+	# 4. Optional: Wenn dein Pop-up ein Fenster (Window) oder ein Popup-Node ist, 
+	# kannst du es direkt zentriert auf dem Bildschirm anzeigen lassen:
+	if popup_instance is Window:
+		popup_instance.popup_centered()

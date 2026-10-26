@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://detyw5cwxo3pl"]
+
+[ext_resource type="Script" uid="uid://bjsx3gyi6lj71" path="res://utils/SaveManager/Popup_zum_laden/popup_zum_laden.gd" id="1_75hrx"]
+
+[node name="PopupZumLaden" type="Control" unique_id=2002400523]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_75hrx")
+
+[node name="Hintergrund" type="PanelContainer" parent="." unique_id=2093060931]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -23.5
+offset_right = 91.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Hintergrund" unique_id=170795685]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hintergrund/MarginContainer" unique_id=1212434914]
+layout_mode = 2
+
+[node name="Überschrift" type="Label" parent="Hintergrund/MarginContainer/VBoxContainer" unique_id=508107248]
+layout_mode = 2
+text = "Speicherstand Laden"
+
+[node name="Spielstande container" type="ScrollContainer" parent="Hintergrund/MarginContainer/VBoxContainer" unique_id=2138587737]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spielstände button container" type="VBoxContainer" parent="Hintergrund/MarginContainer/VBoxContainer/Spielstande container" unique_id=216553818]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hintergrund/MarginContainer/VBoxContainer" unique_id=157093880]
+layout_mode = 2
+
+[node name="abbrechen" type="Button" parent="Hintergrund/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1686781202]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "abbrechen"
+
+[node name="laden" type="Button" parent="Hintergrund/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1332223573]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "laden"
+
+[connection signal="pressed" from="Hintergrund/MarginContainer/VBoxContainer/HBoxContainer/abbrechen" to="." method="_on_abbrechen_pressed"]

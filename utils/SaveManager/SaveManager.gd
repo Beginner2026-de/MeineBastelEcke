@@ -18,3 +18,8 @@ func save_resource(current_data: Resource, APP_NAME: String, DATA_NAME: String) 
 		return "Spielstand erfolgreich gespeichert"
 	else:
 		return "Fehler beim Speichern"
+
+func get_list_of_speicherstände(APP_NAME: String) -> PackedStringArray:
+	var dir_path: String = "user://" + APP_NAME + "/"
+	var liste: PackedStringArray = DirAccess.get_files_at(dir_path)
+	return liste
