@@ -85,7 +85,7 @@ func speicher_den_grapf(Speicher_name: String) -> void:
 			# greifst du so darauf zu (passe den Pfad an deine Node-Struktur an):
 			# var input_text = child.get_node("LineEdit").text 
 			
-			var node_info = {
+			var node_info: Dictionary = {
 				"name": child.name,                              # Name des Nodes (wichtig zum Wiederfinden)
 				"position": child.position_offset,               # WICHTIG: position_offset statt position!
 				# "text_inhalt": input_text                      # Falls du innere Daten hast
@@ -100,8 +100,8 @@ func speicher_den_grapf(Speicher_name: String) -> void:
 	speicher.graph_name = Speicher_name
 	speicher.saved_nodes = node_daten_liste
 	speicher.saved_connections = verbindungen
-	var speicher_ort_name : String = "user://wellen/" + Speicher_name + ".tres"
-	var text: String = SaveManager.save_resource(speicher,speicher_ort_name)
+	
+	var text: String = SaveManager.save_resource(speicher, "welle", Speicher_name)
 	print_nachricten(text)
 	
 func print_nachricten(text: String)-> void:
