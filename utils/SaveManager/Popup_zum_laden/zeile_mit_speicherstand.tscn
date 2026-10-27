@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d3wnlr665ob3v"]
+
+[node name="ZeileMitSpeicherstand" type="Control" unique_id=725459153]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1665438423]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=20604029]
+layout_mode = 2
+text = "Leer"
+
+[node name="umbennenen" type="Button" parent="HBoxContainer" unique_id=1047219454]
+layout_mode = 2
+text = "umbennenen"
+
+[node name="Laden" type="Button" parent="HBoxContainer" unique_id=1404402533]
+layout_mode = 2
+text = "laden"

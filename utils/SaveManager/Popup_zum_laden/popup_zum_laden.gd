@@ -1,4 +1,5 @@
-extends Control
+class_name POPUP_ZUM_LADEN
+extends PopupPanel
 @onready var button_container: VBoxContainer = $"Hintergrund/MarginContainer/VBoxContainer/Spielstande container/Spielstände button container"
 
 # Called when the node enters the scene tree for the first time.

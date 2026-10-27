@@ -2,28 +2,22 @@
 
 [ext_resource type="Script" uid="uid://bjsx3gyi6lj71" path="res://utils/SaveManager/Popup_zum_laden/popup_zum_laden.gd" id="1_75hrx"]
 
-[node name="PopupZumLaden" type="Control" unique_id=2002400523]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="PopupZumLaden" type="PopupPanel" unique_id=1163308524]
+oversampling_override = 1.0
+size = Vector2i(190, 240)
+visible = true
 script = ExtResource("1_75hrx")
 
 [node name="Hintergrund" type="PanelContainer" parent="." unique_id=2093060931]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -91.0
-offset_top = -23.5
+offset_top = -116.0
 offset_right = 91.0
-offset_bottom = 23.5
+offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -57,10 +51,5 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "abbrechen"
-
-[node name="laden" type="Button" parent="Hintergrund/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1332223573]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "laden"
 
 [connection signal="pressed" from="Hintergrund/MarginContainer/VBoxContainer/HBoxContainer/abbrechen" to="." method="_on_abbrechen_pressed"]
