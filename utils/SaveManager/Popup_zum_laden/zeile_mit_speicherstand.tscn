@@ -48,5 +48,10 @@ size_flags_horizontal = 8
 size_flags_vertical = 4
 text = "laden"
 
+[node name="löschen" type="Button" parent="PanelContainer/MarginContainer/HBoxContainer" unique_id=1450872155]
+layout_mode = 2
+text = "X"
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/umbennenen" to="." method="_on_umbennenen_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/Laden" to="." method="_on_laden_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/HBoxContainer/löschen" to="." method="_on_löschen_pressed"]

@@ -31,5 +31,11 @@ func _on_laden_pressed() -> void:
 
 
 func _on_umbennenen_pressed() -> void:
+	
 	pass # popup zum namen ändern anzeigen.
 
+
+
+func _on_löschen_pressed() -> void:
+	DateiBus.speicherstand_loeschen_gedrückt.emit(path_zu_der_datei)
+	queue_free()

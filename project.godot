@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 ThemeManager="*uid://ijj2046pa6vk"
 SaveManager="*uid://cg65s5vnsjh8v"
+DateiBus="*uid://cqlelrm551wq8"
 
 [debug]
 

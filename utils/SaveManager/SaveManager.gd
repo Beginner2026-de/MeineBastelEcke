@@ -1,6 +1,7 @@
 extends Node
 
-
+func _ready() -> void:
+	DateiBus.speicherstand_loeschen_gedrückt.connect(remove_speicherstand)
 # Spielstand speichern
 func save_resource(current_data: Resource, APP_NAME: String, DATA_NAME: String) -> String:
 	# 1. Den Ordner-Pfad aus dem Dateipfad extrahieren (z. B. "user://wellen")
@@ -33,3 +34,8 @@ func get_name_vom_vollen_speicher_path(voller_path:String) -> String:
 
 func get_app_vom_vollen_speicher_path(voller_path: String) -> String:
 	return voller_path.get_base_dir()
+
+func remove_speicherstand(full_path: String) -> void:
+	var error: Error = DirAccess.remove_absolute(full_path)
+	if error == OK:
+		DateiBus.speicherstand_geloescht.emit()
