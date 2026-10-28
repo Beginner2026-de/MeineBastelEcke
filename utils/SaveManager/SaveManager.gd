@@ -21,5 +21,15 @@ func save_resource(current_data: Resource, APP_NAME: String, DATA_NAME: String) 
 
 func get_list_of_speicherstände(APP_NAME: String) -> PackedStringArray:
 	var dir_path: String = "user://" + APP_NAME + "/"
-	var liste: PackedStringArray = DirAccess.get_files_at(dir_path)
-	return liste
+	var liste_der_speicherstände_im_ordner: PackedStringArray = DirAccess.get_files_at(dir_path)
+	var liste_der_speicherstände_mit_follen_path: Array 
+
+	for speicherstand: String in liste_der_speicherstände_im_ordner:
+		liste_der_speicherstände_mit_follen_path.append(dir_path + speicherstand)
+	return liste_der_speicherstände_mit_follen_path
+
+func get_name_vom_vollen_speicher_path(voller_path:String) -> String:
+	return voller_path.get_file()
+
+func get_app_vom_vollen_speicher_path(voller_path: String) -> String:
+	return voller_path.get_base_dir()

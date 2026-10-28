@@ -4,7 +4,7 @@
 
 [node name="PopupZumLaden" type="PopupPanel" unique_id=1163308524]
 oversampling_override = 1.0
-size = Vector2i(190, 240)
+size = Vector2i(447, 240)
 visible = true
 script = ExtResource("1_75hrx")
 
@@ -14,12 +14,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -91.0
+offset_left = -219.5
 offset_top = -116.0
-offset_right = 91.0
+offset_right = 219.5
 offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Hintergrund" unique_id=170795685]
 layout_mode = 2
@@ -33,7 +34,8 @@ layout_mode = 2
 
 [node name="Überschrift" type="Label" parent="Hintergrund/MarginContainer/VBoxContainer" unique_id=508107248]
 layout_mode = 2
-text = "Speicherstand Laden"
+size_flags_horizontal = 4
+text = " Speicherstand Laden"
 
 [node name="Spielstande container" type="ScrollContainer" parent="Hintergrund/MarginContainer/VBoxContainer" unique_id=2138587737]
 custom_minimum_size = Vector2(0, 150)
@@ -43,6 +45,7 @@ size_flags_vertical = 3
 [node name="Spielstände button container" type="VBoxContainer" parent="Hintergrund/MarginContainer/VBoxContainer/Spielstande container" unique_id=216553818]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Hintergrund/MarginContainer/VBoxContainer" unique_id=157093880]
 layout_mode = 2
