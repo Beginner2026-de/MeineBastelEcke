@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 ThemeManager="*uid://ijj2046pa6vk"
 SaveManager="*uid://cg65s5vnsjh8v"
 DateiBus="*uid://cqlelrm551wq8"
+Loggie="*uid://bmh2auo806k0k"
 
 [debug]
 
@@ -35,6 +36,10 @@ gdscript/warnings/inferred_declaration=1
 window/size/viewport_width=900
 window/size/viewport_height=500
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/loggie/plugin.cfg")
 
 [gui]
 
