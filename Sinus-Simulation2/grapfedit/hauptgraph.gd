@@ -112,13 +112,21 @@ func print_nachricten(text: String)-> void:
 
 func _on_speichern_pressed() -> void:
 	# 1. Szene laden (Datentyp ist PackedScene)
-	const POPUP_ZUM_SPEICHERN: PackedScene = preload("uid://cc7fyfgpo8e0f")
+	const popup_zum_speichern: PackedScene = preload("uid://cc7fyfgpo8e0f")
 	
 	# 2. Instanziieren (Erstellt den echten Node aus der Blaupause)
-	var popup_instance: Node = POPUP_ZUM_SPEICHERN.instantiate()
+	var popup_instance: Node = popup_zum_speichern.instantiate()
 	popup_instance.speicher_den_graph_mit_dem_namen.connect(speicher_den_grapf)
 	# 3. Zum aktuellen Szenenbaum hinzufügen (damit es im Spiel existiert)
 	get_tree().root.add_child(popup_instance)
+
+	var fenter_größe: Vector2i = get_window().size 
+	@warning_ignore("INTEGER_DIVISION")
+	fenter_größe.x = fenter_größe.x / 3
+	fenter_größe.y = 10
+	popup_instance.size = fenter_größe
+
+	popup_instance.popup_centered()
 	
 	# 4. Optional: Wenn dein Pop-up ein Fenster (Window) oder ein Popup-Node ist, 
 	# kannst du es direkt zentriert auf dem Bildschirm anzeigen lassen:

@@ -1,4 +1,5 @@
-extends Control
+class_name POPUP_ZUM_SPEICHERN
+extends PopupPanel
 
 @onready var line_edit: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/LineEdit
 @onready var error_nachrichten: LineEdit = $"PanelContainer/MarginContainer/VBoxContainer/Error Nachrichten"
