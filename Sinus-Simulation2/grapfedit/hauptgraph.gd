@@ -137,7 +137,10 @@ func _on_laden_pressed() -> void:
 	get_tree().root.add_child(popup_instance)
 	popup_instance.speicherstände_button_laden("welle")
 	
-	# 4. Optional: Wenn dein Pop-up ein Fenster (Window) oder ein Popup-Node ist, 
-	# kannst du es direkt zentriert auf dem Bildschirm anzeigen lassen:
-	#if popup_instance is Window:
+	var fenter_größe: Vector2i = get_window().size 
+	@warning_ignore("INTEGER_DIVISION")
+	fenter_größe.x = fenter_größe.x / 3
+	fenter_größe.y /= 3
+	popup_instance.size = fenter_größe
+
 	popup_instance.popup_centered()
