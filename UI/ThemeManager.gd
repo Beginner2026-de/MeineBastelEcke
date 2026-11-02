@@ -19,6 +19,7 @@ func GetColorForThemesByIndex(index : int) -> void:
 	# Typografie / Text-Hierarchie
 	var color_text_primary: Color   # Haupttext (Überschriften, wichtige Labels) - bester Kontrast
 	var color_text_secondary: Color # Sekundärer Text (Untertitel, Platzhalter, Beschreibungen)
+	var font_size_neu: int = 20
 
 	match index:
 		0: # --- DUNKEL / SCHWARZ (Dark Mode) ---
@@ -74,7 +75,8 @@ func GetColorForThemesByIndex(index : int) -> void:
 						color_border,
 						color_text_primary,
 						color_text_secondary,
-						button_content_margins)
+						button_content_margins,
+						font_size_neu)
 
 
 func apply_colors_to_theme(color_bg_dark: Color,
@@ -87,6 +89,7 @@ func apply_colors_to_theme(color_bg_dark: Color,
 						color_text_primary: Color,
 						color_text_secondary: Color,
 						button_content_margins: float,
+						font_size_n: int,
 						my_theme:  Resource=load("res://UI/standard.tres")) -> void:
 							
 	RenderingServer.set_default_clear_color(color_bg_dark)
@@ -97,6 +100,7 @@ func apply_colors_to_theme(color_bg_dark: Color,
 		my_theme.set_color("font_hover_color", b_type, color_text_primary)
 		my_theme.set_color("font_pressed_color", b_type, color_text_primary)
 		my_theme.set_color("font_focus_color", b_type, color_text_primary)
+		my_theme.set_font_size("font_size", b_type, font_size_n)
 		
 		# Normal
 		var btn_normal: StyleBoxFlat = StyleBoxFlat.new()
@@ -185,3 +189,6 @@ func apply_colors_to_theme(color_bg_dark: Color,
 
 	my_theme.set_color("font_color", "Label", color_text_primary)
 	my_theme.set_color("default_color", "RichTextLabel", color_text_primary)
+
+func _ready() -> void:
+	GetColorForThemesByIndex(0)
