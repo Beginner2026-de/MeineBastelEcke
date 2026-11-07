@@ -31,9 +31,17 @@ func _on_laden_pressed() -> void:
 
 
 func _on_umbennenen_pressed() -> void:
+	const window_umbennen: PackedScene = preload("uid://mgf7cilwu2yy")
+	var window_umbennen_objekt: POPUP_UMBENNEN= window_umbennen.instantiate()
+	add_child(window_umbennen_objekt)
 	
-	pass # popup zum namen ändern anzeigen.
+	var fenter_größe: Vector2i = get_tree().root.get_window().size 
+	@warning_ignore("INTEGER_DIVISION")
+	fenter_größe.x = fenter_größe.x / 3
+	fenter_größe.y = window_umbennen_objekt.size.y
+	window_umbennen_objekt.size = fenter_größe
 
+	window_umbennen_objekt.popup_centered()
 
 
 func _on_löschen_pressed() -> void:
