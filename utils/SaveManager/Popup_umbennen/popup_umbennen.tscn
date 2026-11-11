@@ -52,4 +52,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "speichern"
 
+[connection signal="window_input" from="." to="." method="_on_window_input"]
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/neuer_name" to="." method="_on_neuer_name_text_submitted"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/abbrechen" to="." method="_on_abbrechen_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/speichern" to="." method="_on_speichern_pressed"]

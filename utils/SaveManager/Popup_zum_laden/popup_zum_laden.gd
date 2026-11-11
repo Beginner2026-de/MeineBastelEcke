@@ -8,6 +8,7 @@ const neuepeicher_zelle: Resource = preload("res://utils/SaveManager/Popup_zum_l
 var app_name: String
 func _ready() -> void:
 	DateiBus.speicherstand_geloescht.connect(liste_neu_starten)
+	DateiBus.speicherstand_fertig_umbenant.connect(liste_neu_starten)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

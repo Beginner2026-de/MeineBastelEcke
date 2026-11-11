@@ -42,7 +42,12 @@ func _on_umbennenen_pressed() -> void:
 	window_umbennen_objekt.size = fenter_größe
 
 	window_umbennen_objekt.popup_centered()
+	window_umbennen_objekt.speicherstand_zelle_neuer_name.connect(_speicherstand_umbennen)
 
+func _speicherstand_umbennen(name_speicherstand_neu:String) -> void:
+	Loggie.debug("Speicherstand umbennen Signal bekommen für die datei ", path_zu_der_datei, "zu dem Namen ", name_speicherstand_neu, "sende weiter an Savemanager")
+	DateiBus.speicherstand_umbennen.emit( path_zu_der_datei, name_speicherstand_neu)
+	
 
 func _on_löschen_pressed() -> void:
 	DateiBus.speicherstand_loeschen_gedrückt.emit(path_zu_der_datei)
