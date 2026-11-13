@@ -1,6 +1,7 @@
 class_name  ZELLE_MIT_SPEICHER_STAND
 extends Control
 
+
 var name_des_speicherstand: Label 
 
 var path_zu_der_datei: String
@@ -25,8 +26,8 @@ func init(datei_path:String) -> void:
 	return
 
 func _on_laden_pressed() -> void:
-	pass # Replace with function body.
-
+	DateiBus.wellen_graphf_speicherstand_der_geladen_werden_soll.emit(path_zu_der_datei)
+	queue_free()
 
 
 

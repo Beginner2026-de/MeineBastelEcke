@@ -32,3 +32,7 @@ func print_error_nachricht(nachricht:String) -> void:
 	error_nachrichten.add_theme_color_override("font_uneditable_color",Color.RED)
 	error_nachrichten.visible  = true
 	error_nachrichten.text  = nachricht
+
+
+func _on_line_edit_text_submitted(_new_text: String) -> void:
+	_on_speichern_pressed()

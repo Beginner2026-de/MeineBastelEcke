@@ -41,6 +41,7 @@ size_flags_vertical = 6
 text = "Amplitude"
 
 [node name="Amp_Eingabe1" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=787020811]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
 placeholder_text = "50.0"
@@ -54,6 +55,7 @@ size_flags_vertical = 6
 text = "Frequency"
 
 [node name="Fre_Eingabe1" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=2064304734]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
 placeholder_text = "2.0"
@@ -70,6 +72,7 @@ layout_mode = 2
 text = "Sekunden"
 
 [node name="Sekundem" type="LineEdit" parent="HBoxContainer/VBoxContainer/Text_Eingabe" unique_id=1718079561]
+unique_name_in_owner = true
 layout_mode = 2
 placeholder_text = "1.0"
 virtual_keyboard_type = 3

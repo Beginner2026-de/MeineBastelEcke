@@ -1,5 +1,5 @@
 extends GraphNode
-class_name DataNode
+class_name Wellen_Ersteller
 
 signal data_changed(key: String, value: Variant)
 

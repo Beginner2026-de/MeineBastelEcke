@@ -5,13 +5,12 @@ extends GraphEdit
 var Liste_der_verbundenen_nodes_paare: Array = []
 
 #Signal um alle wellen ersteller ein neuen punkt zu erzeugen
-signal set_new_point_wellen_ersteller(current_time:float)
+signal set_new_point_wellen_ersteller(current_time: float)
 
 #Signal um alle wellen zusammen füger ein neuen punkt zu erzeugen
 signal set_new_point_wellen_zusammen_steller()
 var global_time: float = 0.0
 var geschwindigkeit: float = 1
-
 
 
 func _ready() -> void:
@@ -20,6 +19,7 @@ func _ready() -> void:
 	disconnection_request.connect(_on_disconnection_request)
 	# NEU: Lauschen, wenn ein Node gelöscht wird
 	child_exiting_tree.connect(_on_child_exiting_tree)
+	DateiBus.wellen_graphf_speicherstand_der_geladen_werden_soll.connect(_speicher_stand_laden)
 
 func _process(delta: float) -> void:
 	global_time += delta * geschwindigkeit
@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 	set_new_point_wellen_zusammen_steller.emit()
 
 			
-	for i: Array in Liste_der_verbundenen_nodes_paare:		
+	for i: Array in Liste_der_verbundenen_nodes_paare:
 		transfer_data(i[0], i[1], i[2], i[3])
 
 func _on_connection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
@@ -73,25 +73,38 @@ func _entferne_alle_verbindungen_fuer_node(node_name: StringName) -> void:
 
 func speicher_den_grapf(Speicher_name: String) -> void:
 	const SpeicherStruckturWellen = preload("uid://q5irkds078yp")
-	var speicher: Resource  = SpeicherStruckturWellen.new()
+	var speicher: Resource = SpeicherStruckturWellen.new()
+	Loggie.debug("Anzahl in Graphf gefundenen Nodes: ", get_child_count())
 	
 	var node_daten_liste: Array = []
 	
 	# 1. Alle Kinder durchgehen und nur GraphNodes herausfiltern
 	for child: Node in get_children():
-		if child is GraphNode:
-			
+		if child is Wellen_Ersteller:
 			# Beispiel: Wenn du im GraphNode ein Eingabefeld (LineEdit) hast, 
 			# greifst du so darauf zu (passe den Pfad an deine Node-Struktur an):
 			# var input_text = child.get_node("LineEdit").text 
-			
 			var node_info: Dictionary = {
-				"name": child.name,                              # Name des Nodes (wichtig zum Wiederfinden)
-				"position": child.position_offset,               # WICHTIG: position_offset statt position!
-				# "text_inhalt": input_text                      # Falls du innere Daten hast
-			}
+				"name": child.name,
+				"title": child.title, # Name des Nodes (wichtig zum Wiederfinden)
+				"position": child.position_offset,
+				"frequency": child.local_data.frequency,
+				"visible_cycles": child.local_data.visible_cycles,
+				"num_points": child.local_data.num_points
+				}
+				         # WICHTIG: position_offset statt position!
+			Loggie.debug("Wellen Ersteller gefunden mit den internen Daten: ", node_info)
 			node_daten_liste.append(node_info)
-	
+
+		if child is Welle_Zusammen_fueger:
+			var node_info: Dictionary = {
+				"name": child.name,
+				"title": child.title,
+				"position": child.position_offset,
+			}
+			Loggie.debug("Wellen Zusammenfüger gefunden mit den internen Daten: ", node_info)
+			node_daten_liste.append(node_info)
+
 	# 2. Alle Verbindungen direkt von Godot holen
 	# get_connection_list() liefert automatisch ein Array voller Dictionaries mit from, from_port, to, to_port
 	var verbindungen: Array = get_connection_list()
@@ -104,11 +117,11 @@ func speicher_den_grapf(Speicher_name: String) -> void:
 	var text: String = SaveManager.save_resource(speicher, "welle", Speicher_name)
 	print_nachricten(text)
 	
-func print_nachricten(text: String)-> void:
+func print_nachricten(text: String) -> void:
 	nachrichten.visible = true
 	nachrichten.text = text
 	await get_tree().create_timer(4).timeout
-	nachrichten.visible= false
+	nachrichten.visible = false
 
 func _on_speichern_pressed() -> void:
 	# 1. Szene laden (Datentyp ist PackedScene)
@@ -120,7 +133,7 @@ func _on_speichern_pressed() -> void:
 	# 3. Zum aktuellen Szenenbaum hinzufügen (damit es im Spiel existiert)
 	get_tree().root.add_child(popup_instance)
 
-	var fenter_größe: Vector2i = get_window().size 
+	var fenter_größe: Vector2i = get_window().size
 	@warning_ignore("INTEGER_DIVISION")
 	fenter_größe.x = fenter_größe.x / 3
 	fenter_größe.y = 10
@@ -145,10 +158,13 @@ func _on_laden_pressed() -> void:
 	get_tree().root.add_child(popup_instance)
 	popup_instance.speicherstände_button_laden("welle")
 	
-	var fenter_größe: Vector2i = get_window().size 
+	var fenter_größe: Vector2i = get_window().size
 	@warning_ignore("INTEGER_DIVISION")
 	fenter_größe.x = fenter_größe.x / 3
 	fenter_größe.y /= 3
 	popup_instance.size = fenter_größe
 
 	popup_instance.popup_centered()
+
+func _speicher_stand_laden(path: String) -> void:
+	Loggie.debug("Speicherstand laden mit der Datei: ", path, " Gestartet")

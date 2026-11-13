@@ -60,5 +60,6 @@ layout_mode = 2
 alignment = 1
 editable = false
 
+[connection signal="text_submitted" from="PanelContainer/MarginContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button container/abrechen" to="." method="_on_abrechen_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button container/speichern" to="." method="_on_speichern_pressed"]
